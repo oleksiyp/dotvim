@@ -59,6 +59,10 @@ function! s:Bclose(bang, buffer)
     call s:Warn('Buffer is in multiple windows (use ":let bclose_multiple=1")')
     return
   endif
+  let wclose = bufname(btarget) == '.git/index' 
+  if getbufvar(btarget,'&buftype') == 'help'
+    let wclose = 1
+  endif
   let wcurrent = winnr()
   for w in wnums
     execute w.'wincmd w'
@@ -82,8 +86,12 @@ function! s:Bclose(bang, buffer)
       endif
     endif
   endfor
-  execute 'bdelete'.a:bang.' '.btarget
-  execute wcurrent.'wincmd w'
+  execute 'silent! bdelete'.a:bang.' '.btarget
+  if wclose
+    execute wcurrent.'wincmd q'
+  else
+    execute wcurrent.'wincmd w'
+  endif
 endfunction
 command! -bang -complete=buffer -nargs=? Bclose call <SID>Bclose('<bang>', '<args>')
 nnoremap <silent> <Leader>bd :Bclose<CR>
