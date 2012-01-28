@@ -15,6 +15,18 @@ function! s:Warn(msg)
   echohl NONE
 endfunction
 
+" Counts listed buffers
+function! s:CountListedBuffers()
+  let cnt = 0
+  for nr in range(1,bufnr("$"))
+    if buflisted(nr)
+      let cnt += 1
+    endif
+  endfor
+  return cnt 
+endfunction 
+
+
 " Command ':Bclose' executes ':bd' to delete buffer in current window.
 " The window will show the alternate buffer (Ctrl-^) if it exists,
 " or the previous buffer (:bp), or a blank buffer if no previous.
@@ -22,7 +34,12 @@ endfunction
 " An optional argument can specify which buffer to close (name or number).
 function! s:Bclose(bang, buffer)
   if empty(a:buffer)
-    let btarget = bufnr('%')
+    if s:CountListedBuffers() == 0
+      execute 'bdelete'.a:bang
+      return
+    else
+      let btarget = bufnr('%')
+    endif 
   elseif a:buffer =~ '^\d\+$'
     let btarget = bufnr(str2nr(a:buffer))
   else
