@@ -55,7 +55,11 @@ endfunction
 noremap <silent> <C-b> :call OpenBuffer()<CR>
 
 " C-Tab buffer switching
-nnoremap <esc>[27;5;9~ :bn<CR>
+if has("gui_running")
+    nnoremap <c-tab> :bn<CR>
+else
+    nnoremap <esc>[27;5;9~ :bn<CR>
+endif
 nnoremap <C-q> :Bclose<CR>
 
 " Some window remapping
@@ -73,6 +77,8 @@ nnoremap <C-x>x <C-w>q
 nnoremap <C-x>c :qa<CR>
 nnoremap <C-x>\| <C-w>v
 nnoremap <C-x>- <C-w>s
+
+" Term command for starting bash
 command! Term ConqueTerm bash
 
 " Invisible characters

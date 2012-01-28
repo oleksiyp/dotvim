@@ -299,7 +299,7 @@ if exists("g:zenburn_high_Contrast")
     hi NonText         guifg=#404040 gui=bold
 else
     " Original, lighter background
-    hi Normal          guifg=#dcdccc guibg=#3f3f3f
+    hi Normal          guifg=#dcdccc guibg=#4a4a4a
     hi CursorLine      guibg=#434443
     hi Pmenu           guibg=#2c2e2e guifg=#9f9f9f
     hi PMenuSel        guibg=#242424 guifg=#d0d0a0 gui=bold
