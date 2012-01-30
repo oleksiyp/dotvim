@@ -68,7 +68,6 @@ function! s:Bclose(bang, buffer)
     call s:Warn('Buffer is in multiple windows (use ":let bclose_multiple=1")')
     return
   endif
-  echomsg bufname(btarget)
   let wclose = s:EndsWith(bufname(btarget),'.git/index') ||  s:EndsWith(bufname(btarget),'.git/COMMIT_EDITMSG') 
   if getbufvar(btarget,'&buftype') == 'help'
     let wclose = 1
