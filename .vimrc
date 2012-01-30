@@ -17,8 +17,11 @@ set smartindent
 set cursorline
 set softtabstop=4
 set shiftwidth=4
+
+" Some options for plugins
 let g:ConqueTerm_InsertOnEnter = 0
 let g:ConqueTerm_CWInsert = 1
+let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|class)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|(^|[/\\])build($|[/\\])'
 
 " Auto source .vimrc on save
 " if has("autocmd")
