@@ -26,6 +26,14 @@ function! s:CountListedBuffers()
   return cnt 
 endfunction 
 
+function! s:EndsWith(s1,s2)
+    let ind = strridx(a:s1,a:s2)
+    if ind >= 0
+        let ind = strlen(a:s1) - ind
+        return (strlen(a:s2)-ind) == 0
+    endif
+    return 0
+endfunction
 
 " Command ':Bclose' executes ':bd' to delete buffer in current window.
 " The window will show the alternate buffer (Ctrl-^) if it exists,
@@ -59,7 +67,7 @@ function! s:Bclose(bang, buffer)
     call s:Warn('Buffer is in multiple windows (use ":let bclose_multiple=1")')
     return
   endif
-  let wclose = bufname(btarget) == '.git/index' 
+  let wclose = s:EndsWith(bufname(btarget),'.git/index') 
   if getbufvar(btarget,'&buftype') == 'help'
     let wclose = 1
   endif
