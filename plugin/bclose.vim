@@ -1,5 +1,6 @@
 " Delete buffer while keeping window layout (don't close buffer's windows).
 " Version 2008-11-18 from http://vim.wikia.com/wiki/VimTip165
+" With additional changes from Dmitry Geurkov (troydm) <d.geurkov@gmail.com>
 if v:version < 700 || exists('loaded_bclose') || &cp
   finish
 endif
@@ -67,7 +68,8 @@ function! s:Bclose(bang, buffer)
     call s:Warn('Buffer is in multiple windows (use ":let bclose_multiple=1")')
     return
   endif
-  let wclose = s:EndsWith(bufname(btarget),'.git/index') 
+  echomsg bufname(btarget)
+  let wclose = s:EndsWith(bufname(btarget),'.git/index') ||  s:EndsWith(bufname(btarget),'.git/COMMIT_EDITMSG') 
   if getbufvar(btarget,'&buftype') == 'help'
     let wclose = 1
   endif
