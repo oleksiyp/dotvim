@@ -58,10 +58,29 @@ endfunction
 noremap <silent> <C-b> :call OpenBuffer()<CR>
 
 " C-Tab buffer switching
+let g:switch_buf_time = reltime() 
+function! SwitchTimeDiff(t,nt)
+    let t2 = reltimestr(a:nt)
+    let t1 = reltimestr(a:t)
+    let t2f = str2float(strpart(t2,3,stridx(t2,'.')+2))
+    let t1f = str2float(strpart(t1,3,stridx(t1,'.')+2))
+    return t2f-t1f 
+endfunction
+
+function! SwitchBuf()
+    let tdiff = SwitchTimeDiff(g:switch_buf_time,reltime())
+    let g:switch_buf_time = reltime()
+    if tdiff <= 0.5 && bufname('%') != '[BufExplorer]'
+        :BufExplorer
+    else
+        :bn
+    endif
+endfunction
+
 if has("gui_running")
-    nnoremap <c-tab> :bn<CR>
+    nnoremap <c-tab> :call SwitchBuf()<CR>
 else
-    nnoremap <esc>[27;5;9~ :bn<CR>
+    nnoremap <esc>[27;5;9~ :call SwitchBuf()<CR>
 endif
 nnoremap <C-q> :Bclose<CR>
 
