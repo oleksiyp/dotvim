@@ -1,7 +1,7 @@
 filetype plugin on
 syntax on
-color zenburn
 set t_Co=256
+color zenburn
 set nocompatible
 set backspace=indent,eol,start
 set nu
@@ -29,8 +29,8 @@ let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|class)$|(^|[/\\])\.(hg
 " endif
 
 " Start NERDTree on startup
-autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd p
+" autocmd VimEnter * NERDTree
+" autocmd VimEnter * wincmd p
 
 " Save file on <C-s>
 nnoremap <silent> <C-S> :if expand("%") == ""<CR>browse confirm w<CR>else<CR>confirm w<CR>endif<CR>
