@@ -70,7 +70,7 @@ function! s:Bclose(bang, buffer)
   endif
   let wclose = s:EndsWith(bufname(btarget),'.git/index') ||  s:EndsWith(bufname(btarget),'.git/COMMIT_EDITMSG') 
   let wbuftype = getbufvar(btarget,'&buftype')
-  if wbuftype == 'help' || wbuftype == 'quickfix'
+  if wbuftype == 'help' || wbuftype == 'quickfix' || wbuftype == 'nofile'
     let wclose = 1
   endif
   let wcurrent = winnr()

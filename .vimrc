@@ -22,6 +22,8 @@ set shiftwidth=4
 let g:ConqueTerm_InsertOnEnter = 0
 let g:ConqueTerm_CWInsert = 1
 let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|class)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|(^|[/\\])build($|[/\\])'
+let g:viewdoc_open = "topleft new"
+let g:no_viewdoc_abbrev = 1
 
 " Auto source .vimrc on save
 " if has("autocmd")
