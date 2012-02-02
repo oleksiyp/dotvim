@@ -54,6 +54,10 @@ function! s:Bclose(bang, buffer)
   else
     let btarget = bufnr(a:buffer)
   endif
+  if bufname(btarget) == '[Command Line]'
+    execute "normal \<c-c>"
+    return
+  endif
   if btarget < 0
     call s:Warn('No matching buffer for '.a:buffer)
     return
