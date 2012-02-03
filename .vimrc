@@ -17,6 +17,7 @@ set smartindent
 set cursorline
 set softtabstop=4
 set shiftwidth=4
+set wildmenu
 
 " Some options for plugins
 let g:ConqueTerm_InsertOnEnter = 0
