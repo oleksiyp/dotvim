@@ -188,6 +188,7 @@ if &t_Co > 255
     hi Label           ctermfg=187   cterm=underline
     hi LineNr          ctermfg=248   ctermbg=235
     hi Macro           ctermfg=223   cterm=bold
+    hi MatchParen      ctermfg=238   ctermbg=181 cterm=bold
     hi ModeMsg         ctermfg=223   cterm=none
     hi MoreMsg         ctermfg=15    cterm=bold
     hi Number          ctermfg=116
