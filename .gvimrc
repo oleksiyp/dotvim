@@ -3,10 +3,14 @@ if has("gui_running")
     set macmeta
 
     " Some meta mappings
-    nnoremap <M-Right> <C-w>l
-    nnoremap <M-Left> <C-w>h
-    nnoremap <M-Up> <C-w>k
-    nnoremap <M-Down> <C-w>j
+    nnoremap <M-Right> :call WinMoveRight()<CR>
+    nnoremap <M-l> :call WinMoveRight()<CR>
+    nnoremap <M-Left> :call WinMoveLeft()<CR>
+    nnoremap <M-h> :call WinMoveLeft()<CR>
+    nnoremap <M-Up> :call WinMoveUp()<CR>
+    nnoremap <M-k> :call WinMoveUp()<CR>
+    nnoremap <M-Down> :call WinMoveDown()<CR>
+    nnoremap <M-j> :call WinMoveDown()<CR>
 
     " Some window remapping
     nnoremap <C-S-Left> <C-w>5>
