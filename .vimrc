@@ -87,11 +87,47 @@ else
 endif
 nnoremap <C-q> :Bclose<CR>
 
-" Some window remapping
-nnoremap <esc>[1;3C <C-w>l
-nnoremap <esc>[1;3D <C-w>h
-nnoremap <esc>[1;3A <C-w>k
-nnoremap <esc>[1;3B <C-w>j
+" Some window movement mappings
+function! WinMoveUp()
+    let w = winnr()
+    :wincmd k
+    if w == winnr()
+        :wincmd j
+    endif
+endfunction
+
+function! WinMoveDown()
+    let w = winnr()
+    :wincmd j
+    if w == winnr()
+        :wincmd k
+    endif
+endfunction
+
+function! WinMoveRight()
+    let w = winnr()
+    :wincmd l
+    if w == winnr()
+        :wincmd h
+    endif
+endfunction
+
+function! WinMoveLeft()
+    let w = winnr()
+    :wincmd h
+    if w == winnr()
+        :wincmd l
+    endif
+endfunction
+
+nnoremap <esc>[1;3C :call WinMoveRight()<CR>
+nnoremap <esc>l :call WinMoveRight()<CR>
+nnoremap <esc>[1;3D :call WinMoveLeft()<CR>
+nnoremap <esc>h :call WinMoveLeft()<CR>
+nnoremap <esc>[1;3A :call WinMoveUp()<CR>
+nnoremap <esc>k :call WinMoveUp()<CR>
+nnoremap <esc>[1;3B :call WinMoveDown()<CR>
+nnoremap <esc>j :call WinMoveDown()<CR>
 nnoremap <esc>[1;6C <C-w>5<
 nnoremap <esc>[1;6D <C-w>5>
 nnoremap <esc>[1;6A <C-w>5-
