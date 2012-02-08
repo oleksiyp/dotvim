@@ -1,8 +1,8 @@
 filetype plugin on
 syntax on
+set nocompatible
 set t_Co=256
 color zenburn
-set nocompatible
 set backspace=indent,eol,start
 set nu
 set hidden
@@ -13,6 +13,9 @@ set expandtab
 set showcmd
 set whichwrap+=<,>
 set hlsearch
+set ignorecase
+set smartcase
+set incsearch
 set smartindent
 set cursorline
 set softtabstop=4
@@ -37,6 +40,9 @@ let g:no_viewdoc_abbrev = 1
 
 " Save file on <C-s>
 nnoremap <silent> <C-S> :if expand("%") == ""<CR>browse confirm w<CR>else<CR>confirm w<CR>endif<CR>
+
+" Next search occurence in search mode
+cmap <c-n> <CR>n/<c-p>
 
 " FuzzyFinder keybindings 
 function! OpenFile()
