@@ -44,11 +44,6 @@ nnoremap <silent> <C-S> :if expand("%") == ""<CR>browse confirm w<CR>else<CR>con
 " Next search occurence in search mode
 cmap <c-n> <CR>n/<c-p>
 
-" Vim rst syntax
-if has("autocmd")
-    autocmd BufNewFile,BufRead *.rst :set syntax=rest
-endif
-
 " FuzzyFinder keybindings 
 function! OpenFile()
     if stridx(bufname("%"),"NERD_tree") >= 0
