@@ -38,6 +38,30 @@ let g:no_viewdoc_abbrev = 1
 " autocmd VimEnter * NERDTree
 " autocmd VimEnter * wincmd p
 
+" Shell
+function! s:ExecuteInShell(command)
+    let command = join(map(split(a:command), 'expand(v:val)'))
+    let winnr = bufwinnr('^' . command . '$')
+    if winnr < 0
+        execute &lines/3 . 'sp ' . fnameescape(command)
+    else
+        execute winnr . 'wincmd w'
+    endif
+    setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap number
+    echo 'Execute ' . command . '...'
+    silent! execute 'silent %!'. command
+    if line('$') < &lines/3
+        silent! execute 'resize '. (line('$')-(&lines/3)+1)
+    endif
+    silent! redraw
+    echo 'Shell command ' . command . ' executed.'
+endfunction
+command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
+
+" Maven
+command! -nargs=+ Maven Shell mvn <args> 
+command! -nargs=+ Mvn Shell mvn <args>
+
 " Save file on <C-s>
 nnoremap <silent> <C-S> :if expand("%") == ""<CR>browse confirm w<CR>else<CR>confirm w<CR>endif<CR>
 
