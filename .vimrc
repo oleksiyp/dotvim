@@ -126,11 +126,45 @@ function! WinMoveUp()
     endif
 endfunction
 
+function! WinSwapUp()
+    let b = bufname('%') 
+    let w = winnr()
+    :wincmd k
+    if w == winnr()
+        :wincmd j
+    endif
+    let w2 = winnr()
+    if w != w2
+        let b2 = bufname('%')
+        execute w . "wincmd w"
+        execute "b " . b2
+        execute w2 . "wincmd w"
+        execute "b " . b
+    endif
+endfunction
+
 function! WinMoveDown()
     let w = winnr()
     :wincmd j
     if w == winnr()
         :wincmd k
+    endif
+endfunction
+
+function! WinSwapDown()
+    let b = bufname('%') 
+    let w = winnr()
+    :wincmd j
+    if w == winnr()
+        :wincmd k
+    endif
+    let w2 = winnr()
+    if w != w2
+        let b2 = bufname('%')
+        execute w . "wincmd w"
+        execute "b " . b2
+        execute w2 . "wincmd w"
+        execute "b " . b
     endif
 endfunction
 
@@ -142,11 +176,45 @@ function! WinMoveRight()
     endif
 endfunction
 
+function! WinSwapRight()
+    let b = bufname('%') 
+    let w = winnr()
+    :wincmd l
+    if w == winnr()
+        :wincmd h
+    endif
+    let w2 = winnr()
+    if w != w2
+        let b2 = bufname('%')
+        execute w . "wincmd w"
+        execute "b " . b2
+        execute w2 . "wincmd w"
+        execute "b " . b
+    endif
+endfunction
+
 function! WinMoveLeft()
     let w = winnr()
     :wincmd h
     if w == winnr()
         :wincmd l
+    endif
+endfunction
+
+function! WinSwapLeft()
+    let b = bufname('%') 
+    let w = winnr()
+    :wincmd h
+    if w == winnr()
+        :wincmd l
+    endif
+    let w2 = winnr()
+    if w != w2
+        let b2 = bufname('%')
+        execute w . "wincmd w"
+        execute "b " . b2
+        execute w2 . "wincmd w"
+        execute "b " . b
     endif
 endfunction
 
@@ -158,6 +226,14 @@ nnoremap <esc>[1;3A :call WinMoveUp()<CR>
 nnoremap <esc>k :call WinMoveUp()<CR>
 nnoremap <esc>[1;3B :call WinMoveDown()<CR>
 nnoremap <esc>j :call WinMoveDown()<CR>
+nnoremap <esc>[1;10C :call WinSwapRight()<CR>
+nnoremap <esc>L :call WinSwapRight()<CR>
+nnoremap <esc>[1;10D :call WinSwapLeft()<CR>
+nnoremap <esc>H :call WinSwapLeft()<CR>
+nnoremap <esc>[1;10A :call WinSwapUp()<CR>
+nnoremap <esc>K :call WinSwapUp()<CR>
+nnoremap <esc>[1;10B :call WinSwapDown()<CR>
+nnoremap <esc>J :call WinSwapDown()<CR>
 nnoremap <esc>[1;6C <C-w>5<
 nnoremap <esc>[1;6D <C-w>5>
 nnoremap <esc>[1;6A <C-w>5-

@@ -11,6 +11,14 @@ if has("gui_running")
     nnoremap <M-k> :call WinMoveUp()<CR>
     nnoremap <M-Down> :call WinMoveDown()<CR>
     nnoremap <M-j> :call WinMoveDown()<CR>
+    nnoremap <M-S-Right> :call WinSwapRight()<CR>
+    nnoremap <M-S-l> :call WinSwapRight()<CR>
+    nnoremap <M-S-Left> :call WinSwapLeft()<CR>
+    nnoremap <M-S-h> :call WinSwapLeft()<CR>
+    nnoremap <M-S-Up> :call WinSwapUp()<CR>
+    nnoremap <M-S-k> :call WinSwapUp()<CR>
+    nnoremap <M-S-Down> :call WinSwapDown()<CR>
+    nnoremap <M-S-j> :call WinSwapDown()<CR>
 
     " Some window remapping
     nnoremap <C-S-Left> <C-w>5>
