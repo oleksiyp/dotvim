@@ -103,17 +103,21 @@ endfunction
 function! SwitchBuf()
     let tdiff = SwitchTimeDiff(g:switch_buf_time,reltime())
     let g:switch_buf_time = reltime()
-    if tdiff <= 0.5 && bufname('%') != '[BufExplorer]'
+    if tdiff <= 0.25 && bufname('%') != '[BufExplorer]'
         :BufExplorer
     else
+        let n = bufnr('%')
         :bn
+        while n != bufnr('%') && getbufvar('%','&buftype') == 'nofile'
+            :bn
+        endwhile
     endif
 endfunction
 
 if has("gui_running")
-    nnoremap <c-tab> :call SwitchBuf()<CR>
+    nnoremap <silent> <c-tab> :call SwitchBuf()<CR>
 else
-    nnoremap <esc>[27;5;9~ :call SwitchBuf()<CR>
+    nnoremap <silent> <esc>[27;5;9~ :call SwitchBuf()<CR>
 endif
 nnoremap <C-q> :Bclose<CR>
 
