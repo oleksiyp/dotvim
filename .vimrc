@@ -218,26 +218,26 @@ function! WinSwapLeft()
     endif
 endfunction
 
-nnoremap <esc>[1;3C :call WinMoveRight()<CR>
-nnoremap <esc>l :call WinMoveRight()<CR>
-nnoremap <esc>[1;3D :call WinMoveLeft()<CR>
-nnoremap <esc>h :call WinMoveLeft()<CR>
-nnoremap <esc>[1;3A :call WinMoveUp()<CR>
-nnoremap <esc>k :call WinMoveUp()<CR>
-nnoremap <esc>[1;3B :call WinMoveDown()<CR>
-nnoremap <esc>j :call WinMoveDown()<CR>
-nnoremap <esc>[1;10C :call WinSwapRight()<CR>
-nnoremap <esc>L :call WinSwapRight()<CR>
-nnoremap <esc>[1;10D :call WinSwapLeft()<CR>
-nnoremap <esc>H :call WinSwapLeft()<CR>
-nnoremap <esc>[1;10A :call WinSwapUp()<CR>
-nnoremap <esc>K :call WinSwapUp()<CR>
-nnoremap <esc>[1;10B :call WinSwapDown()<CR>
-nnoremap <esc>J :call WinSwapDown()<CR>
-nnoremap <esc>[1;6C <C-w>5<
-nnoremap <esc>[1;6D <C-w>5>
-nnoremap <esc>[1;6A <C-w>5-
-nnoremap <esc>[1;6B <C-w>5+
+nnoremap <silent> <esc>[1;3C :call WinMoveRight()<CR>
+nnoremap <silent> <esc>l :call WinMoveRight()<CR>
+nnoremap <silent> <esc>[1;3D :call WinMoveLeft()<CR>
+nnoremap <silent> <esc>h :call WinMoveLeft()<CR>
+nnoremap <silent> <esc>[1;3A :call WinMoveUp()<CR>
+nnoremap <silent> <esc>k :call WinMoveUp()<CR>
+nnoremap <silent> <esc>[1;3B :call WinMoveDown()<CR>
+nnoremap <silent> <esc>j :call WinMoveDown()<CR>
+nnoremap <silent> <esc>[1;10C :call WinSwapRight()<CR>
+nnoremap <silent> <esc>L :call WinSwapRight()<CR>
+nnoremap <silent> <esc>[1;10D :call WinSwapLeft()<CR>
+nnoremap <silent> <esc>H :call WinSwapLeft()<CR>
+nnoremap <silent> <esc>[1;10A :call WinSwapUp()<CR>
+nnoremap <silent> <esc>K :call WinSwapUp()<CR>
+nnoremap <silent> <esc>[1;10B :call WinSwapDown()<CR>
+nnoremap <silent> <esc>J :call WinSwapDown()<CR>
+nnoremap <silent> <esc>[1;6C <C-w>5<
+nnoremap <silent> <esc>[1;6D <C-w>5>
+nnoremap <silent> <esc>[1;6A <C-w>5-
+nnoremap <silent> <esc>[1;6B <C-w>5+
 
 " Some emacs inspired keymappings
 nnoremap <C-x>x <C-w>q
