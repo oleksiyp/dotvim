@@ -1,6 +1,6 @@
-filetype plugin on
-syntax on
 set nocompatible
+filetype plugin indent on
+syntax on
 set t_Co=256
 color zenburn
 set backspace=indent,eol,start
