@@ -58,6 +58,10 @@ function! s:Bclose(bang, buffer)
     execute "normal \<c-c>"
     return
   endif
+  if match(bufname(btarget),'__Gundo') == 0
+    execute 'GundoToggle'
+    return
+  endif
   if btarget < 0
     call s:Warn('No matching buffer for '.a:buffer)
     return
