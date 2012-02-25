@@ -71,6 +71,10 @@ nnoremap <silent> <C-S> :if expand("%") == ""<CR>browse confirm w<CR>else<CR>con
 " Next search occurence in search mode
 cmap <c-n> <CR>n/<c-p>
 
+" pbpaste and pbcopy
+command! Pbpaste :execute 'let @r = system("ssh mini pbpaste")'
+command! Pbcopy :execute 'call system("ssh mini pbcopy",@r)'
+
 " FuzzyFinder keybindings 
 function! OpenFile()
     if stridx(bufname("%"),"NERD_tree") >= 0
