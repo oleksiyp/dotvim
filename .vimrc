@@ -58,6 +58,9 @@ function! s:ExecuteInShell(command)
 endfunction
 command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
 
+" Ant
+command! -nargs=+ Ant Shell ant <args>
+
 " Maven
 command! -nargs=+ Maven Shell mvn <args> 
 command! -nargs=+ Mvn Shell mvn <args>
