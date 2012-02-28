@@ -52,9 +52,8 @@ function! s:ExecuteInShell(command)
     silent! execute 'silent %!'. command
     if line('$') < &lines/3
         silent! execute 'resize '. (line('$')-(&lines/3)+1)
-    else
-        normal G
     endif
+    normal G
     silent! redraw
     echo 'Shell command ' . command . ' executed.'
 endfunction
