@@ -11,7 +11,7 @@ set ruler
 set showmatch
 set expandtab
 set showcmd
-set whichwrap+=<,>
+set whichwrap+=<,>,h,l
 set hlsearch
 set ignorecase
 set smartcase
