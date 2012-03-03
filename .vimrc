@@ -12,7 +12,6 @@ set showmatch
 set expandtab
 set showcmd
 set whichwrap+=<,>,h,l
-set iskeyword-=.
 set hlsearch
 set ignorecase
 set smartcase
