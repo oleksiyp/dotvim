@@ -3,6 +3,7 @@ filetype plugin indent on
 syntax on
 set t_Co=256
 color zenburn
+
 set backspace=indent,eol,start
 set nu
 set hidden
@@ -21,8 +22,15 @@ set cursorline
 set softtabstop=4
 set shiftwidth=4
 set wildmenu
+set statusline=\ %f\ %#Keyword#%m%r%h%w%*\ (%l/%L,\ %c)\ %P%=\ %y\ [%{&encoding}:%{&fileformat}]\ \ 
+set laststatus=2
 
 " Some options for plugins
+let g:smartusline_hi_replace = 'guibg=#e454ba guifg=black ctermbg=225 ctermfg=black'
+let g:smartusline_hi_insert = 'guibg=orange guifg=black ctermbg=189 ctermfg=black'
+let g:smartusline_hi_virtual_replace = 'guibg=#e454ba guifg=black ctermbg=225 ctermfg=black'
+let g:smartusline_hi_normal = 'guibg=#95e454 guifg=black ctermbg=223 ctermfg=black'
+let g:smartusline_string_to_highlight = ' %f '
 let g:ConqueTerm_InsertOnEnter = 0
 let g:ConqueTerm_CWInsert = 1
 let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|class)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|(^|[/\\])build($|[/\\])'

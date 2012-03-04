@@ -946,6 +946,11 @@ rsync	pi_netrw.txt	/*rsync*
 s:netrw_passwd	pi_netrw.txt	/*s:netrw_passwd*
 scp	pi_netrw.txt	/*scp*
 sftp	pi_netrw.txt	/*sftp*
+smartusline	smartusline.txt	/*smartusline*
+smartusline-configure	smartusline.txt	/*smartusline-configure*
+smartusline-description	smartusline.txt	/*smartusline-description*
+smartusline-requirements	smartusline.txt	/*smartusline-requirements*
+smartusline.txt	smartusline.txt	/*smartusline.txt*
 snipMate	snipMate.txt	/*snipMate*
 snipMate-$#	snipMate.txt	/*snipMate-$#*
 snipMate-${#:}	snipMate.txt	/*snipMate-${#:}*
