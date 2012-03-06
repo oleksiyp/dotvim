@@ -26,9 +26,9 @@ set statusline=\ %f\ %#Keyword#%m%r%h%w%*\ (%l/%L,\ %c)\ %P%=\ %y\ [%{&encoding}
 set laststatus=2
 
 " Some options for plugins
-let g:smartusline_hi_replace = 'guibg=#e454ba guifg=black ctermbg=225 ctermfg=black'
-let g:smartusline_hi_insert = 'guibg=orange guifg=black ctermbg=189 ctermfg=black'
-let g:smartusline_hi_virtual_replace = 'guibg=#e454ba guifg=black ctermbg=225 ctermfg=black'
+let g:smartusline_hi_replace = 'guibg=#d6aefe guifg=black ctermbg=183 ctermfg=black'
+let g:smartusline_hi_insert = 'guibg=#afd7ff guifg=black ctermbg=153 ctermfg=black'
+let g:smartusline_hi_virtual_replace = 'guibg=#d6aefe guifg=black ctermbg=183 ctermfg=black'
 let g:smartusline_hi_normal = 'guibg=#f0dfaf guifg=black ctermbg=223 ctermfg=black'
 let g:smartusline_string_to_highlight = ' %f '
 let g:ConqueTerm_InsertOnEnter = 0
