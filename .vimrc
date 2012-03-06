@@ -29,7 +29,7 @@ set laststatus=2
 let g:smartusline_hi_replace = 'guibg=#e454ba guifg=black ctermbg=225 ctermfg=black'
 let g:smartusline_hi_insert = 'guibg=orange guifg=black ctermbg=189 ctermfg=black'
 let g:smartusline_hi_virtual_replace = 'guibg=#e454ba guifg=black ctermbg=225 ctermfg=black'
-let g:smartusline_hi_normal = 'guibg=#95e454 guifg=black ctermbg=223 ctermfg=black'
+let g:smartusline_hi_normal = 'guibg=#f0dfaf guifg=black ctermbg=223 ctermfg=black'
 let g:smartusline_string_to_highlight = ' %f '
 let g:ConqueTerm_InsertOnEnter = 0
 let g:ConqueTerm_CWInsert = 1
