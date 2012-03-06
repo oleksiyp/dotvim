@@ -87,6 +87,12 @@ function! SmartusLineWin(mode)
 
     if start_idx >= 0
         if a:mode == 'Enter'
+            if &l:ft != 'conque_term' && !exists('b:smartusline_au_insert')
+                let b:smartusline_au_insert = 1
+                au SmartusLine InsertLeave <buffer> call SmartusLineInsert('Leave')
+                au SmartusLine InsertEnter <buffer> call SmartusLineInsert('Enter')
+                au SmartusLine InsertChange <buffer> call SmartusLineInsert('Enter')
+            endif
             if match(curr_stl, s:open_hi) < 0
                 if start_idx > 0
                     let new_stl .= curr_stl[0 : start_idx -1]
