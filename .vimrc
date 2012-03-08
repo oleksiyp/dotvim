@@ -71,8 +71,12 @@ command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
 command! -nargs=+ Ant Shell ant <args>
 
 " Maven
-command! -nargs=+ Maven Shell mvn <args> 
-command! -nargs=+ Mvn Shell mvn <args>
+command! -complete=customlist,ListMavenCompletions -nargs=+ Maven Shell mvn <args> 
+command! -complete=customlist,ListMavenCompletions -nargs=+ Mvn Shell mvn <args>
+fun! ListMavenCompletions(A,L,P)
+    let mavengoals = ['compile','package','validate','test','deploy','site','clean','install','archetype:generate'] 
+    return filter(mavengoals,"v:val =~ \'^".a:A."\'") 
+endfun
 
 " Save file on <C-s>
 nnoremap <silent> <C-S> :if expand("%") == ""<CR>browse confirm w<CR>else<CR>confirm w<CR>endif<CR>
