@@ -38,7 +38,7 @@ let g:viewdoc_open = "topleft new"
 let g:no_viewdoc_abbrev = 1
 
 " XML Related settings
-au BufRead,BufNew,BufNewFile *.xml setlocal shiftwidth=2 | setlocal softtabstop=2
+au FileType xml setlocal sw=2 sts=2
 
 " Auto source .vimrc on save
 " if has("autocmd")
