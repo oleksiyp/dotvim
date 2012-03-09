@@ -37,6 +37,9 @@ let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|class)$|(^|[/\\])\.(hg
 let g:viewdoc_open = "topleft new"
 let g:no_viewdoc_abbrev = 1
 
+" XML Related settings
+au BufRead,BufNew,BufNewFile *.xml setlocal shiftwidth=2 | setlocal softtabstop=2
+
 " Auto source .vimrc on save
 " if has("autocmd")
 "     autocmd BufWritePost .vimrc source $MYVIMRC
@@ -71,8 +74,15 @@ command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
 command! -nargs=+ Ant Shell ant <args>
 
 " Maven
-command! -complete=customlist,ListMavenCompletions -nargs=+ Maven Shell mvn <args> 
-command! -complete=customlist,ListMavenCompletions -nargs=+ Mvn Shell mvn <args>
+command! -complete=customlist,ListMavenCompletions -nargs=+ Maven call ShellMvn(<q-args>)
+command! -complete=customlist,ListMavenCompletions -nargs=+ Mvn call ShellMvn(<q-args>)
+fun! ShellMvn(command)
+    if a:command =~ '^archetype:generate'
+        execute '!mvn '.a:command  
+    else
+        call s:ExecuteInShell('mvn '.a:command) 
+    endif
+endfun
 fun! ListMavenCompletions(A,L,P)
     let mavengoals = ['compile','package','validate','test','deploy','site','clean','install','archetype:generate'] 
     return filter(mavengoals,"v:val =~ \'^".a:A."\'") 

@@ -1044,6 +1044,12 @@ viewdoc-tabbed	viewdoc.txt	/*viewdoc-tabbed*
 viewdoc-tabbed-fullscreen	viewdoc.txt	/*viewdoc-tabbed-fullscreen*
 viewdoc-windowed	viewdoc.txt	/*viewdoc-windowed*
 viewdoc.txt	viewdoc.txt	/*viewdoc.txt*
+xml-plugin-callbacks	xml-plugin.txt	/*xml-plugin-callbacks*
+xml-plugin-filetypes	xml-plugin.txt	/*xml-plugin-filetypes*
+xml-plugin-html	xml-plugin.txt	/*xml-plugin-html*
+xml-plugin-mappings	xml-plugin.txt	/*xml-plugin-mappings*
+xml-plugin-settings	xml-plugin.txt	/*xml-plugin-settings*
+xml-plugin.txt	xml-plugin.txt	/*xml-plugin.txt*
 yS	surround.txt	/*yS*
 ySS	surround.txt	/*ySS*
 ys	surround.txt	/*ys*
