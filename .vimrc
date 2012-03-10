@@ -61,7 +61,7 @@ function! s:ExecuteInShell(command)
     setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap number
     echo 'Execute ' . command . '...'
     silent! execute 'silent %!'. command
-    if line('$') < &lines/3
+    if line('$') < &lines/3 && (line('$')-(&lines/3)+1) < 0
         silent! execute 'resize '. (line('$')-(&lines/3)+1)
     endif
     normal G
