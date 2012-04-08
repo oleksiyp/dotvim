@@ -40,6 +40,10 @@ let g:no_viewdoc_abbrev = 1
 " Java Related settings
 au FileType java syntax keyword Keyword package import public protected private abstract class interface extends implements static final volatile synchronized | syntax keyword Type Integer Short Byte Float Double Char Boolean Long String | match Type /^import\s\+.*\.\zs.*\ze;/
 
+" Erlang Related settings
+let erlang_folding = 1
+au FileType erlang setlocal foldenable foldopen=all foldclose=all
+
 " XML Related settings
 au FileType xml setlocal sw=2 sts=2
 
