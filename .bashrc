@@ -6,3 +6,5 @@ vim()
     command vim "$@"
     stty "$STTYOPTS"
 }
+
+alias vi=vim
