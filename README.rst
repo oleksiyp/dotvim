@@ -1,6 +1,7 @@
 Installation::
 
-    git clone git://github.com/troydm/dotvim.git ~/.vim
+    git clone https://github.com/troydm/dotvim.git ~/.vim
+    git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
     Create symlinks::
 
