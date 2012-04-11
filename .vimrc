@@ -1,4 +1,39 @@
 set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+" Bundles
+
+" original repos on github
+Bundle 'mileszs/ack.vim'
+Bundle 'tpope/vim-fugitive'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'tpope/vim-surround'
+Bundle 'scrooloose/nerdtree'
+Bundle 'kien/ctrlp.vim'
+Bundle 'msanders/snipmate.vim'
+Bundle 'rson/vim-conque'
+Bundle 'molok/vim-smartusline'
+Bundle 'ervandew/supertab'
+Bundle 'tomtom/tcomment_vim'
+Bundle 'majutsushi/tagbar'
+Bundle 'vim-scripts/mru.vim'
+Bundle 'oscarh/vimerl'
+
+" vim-scripts repos
+Bundle 'L9'
+Bundle 'FuzzyFinder'
+Bundle 'bufexplorer.zip'
+Bundle 'ZoomWin'
+Bundle 'netrw.vim'
+Bundle 'Gundo'
+
 filetype plugin indent on
 syntax on
 set t_Co=256
@@ -39,6 +74,8 @@ let g:no_viewdoc_abbrev = 1
 
 " Java Related settings
 au FileType java syntax keyword Keyword package import public protected private abstract class interface extends implements static final volatile synchronized | syntax keyword Type Integer Short Byte Float Double Char Boolean Long String | match Type /^import\s\+.*\.\zs.*\ze;/
+au BufRead,BufNewFile *.jar,*.war,*.ear,*.sar,*.rar set filetype=zip
+au FileType java setlocal foldmethod=syntax foldclose=all foldlevel=1 foldcolumn=1 foldenable foldopen=all
 
 " Erlang Related settings
 let erlang_folding = 1
