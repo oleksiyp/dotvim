@@ -25,6 +25,7 @@ Bundle 'ervandew/supertab'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'vim-scripts/mru.vim'
+Bundle 'Raimondi/delimitMate'
 Bundle 'oscarh/vimerl'
 
 " vim-scripts repos
