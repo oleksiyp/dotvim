@@ -35,6 +35,7 @@ Bundle 'bufexplorer.zip'
 Bundle 'ZoomWin'
 Bundle 'netrw.vim'
 Bundle 'Gundo'
+Bundle 'javacomplete'
 
 filetype plugin indent on
 syntax on
@@ -78,7 +79,7 @@ let g:snippets_dir = '~/.vim/bundle/snipmate-snippets/snippets'
 " Java Related settings
 au FileType java syntax keyword Keyword package import public protected private abstract class interface extends implements static final volatile synchronized | syntax keyword Type Integer Short Byte Float Double Char Boolean Long String | match Type /^import\s\+.*\.\zs.*\ze;/
 au BufRead,BufNewFile *.jar,*.war,*.ear,*.sar,*.rar set filetype=zip
-au FileType java setlocal foldmethod=syntax foldclose=all foldlevel=1 foldcolumn=1 foldenable foldopen=all
+au FileType java setlocal foldmethod=syntax foldclose=all foldlevel=1 foldcolumn=1 foldenable foldopen=all omnifunc=javacomplete#Complete completefunc=javacomplete#CompleteParamsInfo 
 
 " Erlang Related settings
 let erlang_folding = 1
