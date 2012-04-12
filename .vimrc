@@ -18,6 +18,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
 Bundle 'msanders/snipmate.vim'
+Bundle 'honza/snipmate-snippets'
 Bundle 'rson/vim-conque'
 Bundle 'molok/vim-smartusline'
 Bundle 'ervandew/supertab'
@@ -71,6 +72,7 @@ let g:ConqueTerm_CWInsert = 1
 let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|class)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|(^|[/\\])build($|[/\\])'
 let g:viewdoc_open = "topleft new"
 let g:no_viewdoc_abbrev = 1
+let g:snippets_dir = '~/.vim/bundle/snipmate-snippets/snippets'
 
 " Java Related settings
 au FileType java syntax keyword Keyword package import public protected private abstract class interface extends implements static final volatile synchronized | syntax keyword Type Integer Short Byte Float Double Char Boolean Long String | match Type /^import\s\+.*\.\zs.*\ze;/
