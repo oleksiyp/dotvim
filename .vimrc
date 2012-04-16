@@ -77,7 +77,7 @@ let g:no_viewdoc_abbrev = 1
 let g:snippets_dir = '~/.vim/bundle/snipmate-snippets/snippets'
 
 " Java Related settings
-au FileType java syntax keyword Keyword package import public protected private abstract class interface extends implements static final volatile synchronized | syntax keyword Type Integer Short Byte Float Double Char Boolean Long String | match Type /^import\s\+.*\.\zs.*\ze;/
+au FileType java syntax keyword Keyword package import public protected private abstract class interface extends implements static final volatile synchronized try catch finally throws | syntax keyword Type Integer Short Byte Float Double Char Boolean Long String | match Type /^import\s\+.*\.\zs.*\ze;/
 au BufRead,BufNewFile *.jar,*.war,*.ear,*.sar,*.rar set filetype=zip
 au FileType java setlocal foldmethod=syntax foldclose=all foldlevel=1 foldcolumn=1 foldenable foldopen=all omnifunc=javacomplete#Complete completefunc=javacomplete#CompleteParamsInfo 
 
@@ -320,6 +320,10 @@ nnoremap <silent> <esc>[1;6C <C-w>5<
 nnoremap <silent> <esc>[1;6D <C-w>5>
 nnoremap <silent> <esc>[1;6A <C-w>5-
 nnoremap <silent> <esc>[1;6B <C-w>5+
+
+" Visual tab mapping
+vmap <Tab> >gv
+vmap <S-Tab> <gv
 
 " Some emacs inspired keymappings
 nnoremap <C-x>x <C-w>q
