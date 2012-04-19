@@ -76,10 +76,51 @@ let g:viewdoc_open = "topleft new"
 let g:no_viewdoc_abbrev = 1
 let g:snippets_dir = '~/.vim/bundle/snipmate-snippets/snippets'
 
+" Java complete maven addition
+let g:mvn_project = ''
+let g:mvn_project_pom_ftime = 0
+let g:mvn_project_source_path_set = 0
+function! MvnInitializeProject()
+    if (g:mvn_project != getcwd() || g:mvn_project_pom_ftime != getftime('pom.xml')) && filereadable('pom.xml')
+        let g:mvn_project = getcwd()
+        let g:mvn_project_pom_ftime = getftime('pom.xml')
+        let mvn_classpath = ''
+        let mvn_classpath_output = split(system('mvn dependency:build-classpath'),"\n")
+        let class_path_next = 0
+        for line in mvn_classpath_output
+            if class_path_next == 1
+                let mvn_classpath = line
+                break
+            endif
+            if match(line,'Dependencies classpath:') >= 0
+                let class_path_next = 1
+            endif
+        endfor
+        if mvn_classpath != ''
+            call javacomplete#SetClassPath(mvn_classpath)
+        endif
+        if g:mvn_project_source_path_set == 0
+            call javacomplete#AddSourcePath('src/main/java')
+            call javacomplete#AddSourcePath('src/test/java')
+            let g:mvn_project_source_path_set = 1
+        endif
+    endif     
+endfunction
+
+function! MvnJavaComplete(findstart, base)
+    call MvnInitializeProject()
+    return javacomplete#Complete(a:findstart, a:base)
+endfunction
+
+function! MvnJavaCompleteParamsInfo(findstart, base)
+    call MvnInitializeProject()
+    return javacomplete#CompleteParamsInfo(a:findstart, a:base)
+endfunction
+
 " Java Related settings
 au FileType java syntax keyword Keyword package import public protected private abstract class interface extends implements static final volatile synchronized try catch finally throws | syntax keyword Type Integer Short Byte Float Double Char Boolean Long String | match Type /^import\s\+.*\.\zs.*\ze;/
 au BufRead,BufNewFile *.jar,*.war,*.ear,*.sar,*.rar set filetype=zip
-au FileType java setlocal foldmethod=syntax foldclose=all foldlevel=1 foldcolumn=1 foldenable foldopen=all omnifunc=javacomplete#Complete completefunc=javacomplete#CompleteParamsInfo 
+au FileType java setlocal foldmethod=syntax foldclose=all foldlevel=1 foldcolumn=1 foldenable foldopen=all omnifunc=MvnJavaComplete completefunc=MvnJavaCompleteParamsInfo
 
 " Erlang Related settings
 let erlang_folding = 1
