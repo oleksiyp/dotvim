@@ -117,6 +117,17 @@ function! MvnJavaCompleteParamsInfo(findstart, base)
     return javacomplete#CompleteParamsInfo(a:findstart, a:base)
 endfunction
 
+" Java maven compile on save
+let g:mvn_compile_on_save_enabled = 0
+function! MvnCompileProject()
+    if filereadable('pom.xml')
+        Maven compile
+    endif
+endfunction
+
+au BufWritePost *.java if g:mvn_compile_on_save_enabled | silent call MvnCompileProject() | endif
+command! MavenCompileOnSaveToggle let g:mvn_compile_on_save_enabled = !g:mvn_compile_on_save_enabled | if g:mvn_compile_on_save_enabled | echo "Maven compile on save enabled" | else | echo "Maven compile on save disabled" | endif
+
 " Java Related settings
 au FileType java syntax keyword Keyword package import public protected private abstract class interface extends implements static final volatile synchronized try catch finally throws | syntax keyword Type Integer Short Byte Float Double Char Boolean Long String | match Type /^import\s\+.*\.\zs.*\ze;/
 au BufRead,BufNewFile *.jar,*.war,*.ear,*.sar,*.rar set filetype=zip
