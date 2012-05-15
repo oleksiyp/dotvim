@@ -1,6 +1,9 @@
 if has("gui_running")
     set guioptions-=L
-    set macmeta
+
+    if has('gui_macvim')
+        set macmeta
+    endif
 
     " Some meta mappings
     nnoremap <silent> <M-Right> :call WinMoveRight()<CR>
