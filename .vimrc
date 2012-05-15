@@ -392,4 +392,6 @@ nnoremap <C-x>- <C-w>s
 command! Term ConqueTerm bash
 
 " Invisible characters
-set listchars=tab:▸\ ,eol:¬
+if !(has("win16") || has("win32") || has("win64"))
+    set listchars=tab:▸\ ,eol:¬
+endif
