@@ -42,6 +42,7 @@ syntax on
 set t_Co=256
 color zenburn
 
+set encoding=utf-8
 set backspace=indent,eol,start
 set nu
 set hidden
