@@ -27,6 +27,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'vim-scripts/mru.vim'
 Bundle 'Raimondi/delimitMate'
 Bundle 'oscarh/vimerl'
+Bundle 'sjl/vitality.vim'
 
 " vim-scripts repos
 Bundle 'L9'
@@ -76,6 +77,7 @@ let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|class)$|(^|[/\\])\.(hg
 let g:viewdoc_open = "topleft new"
 let g:no_viewdoc_abbrev = 1
 let g:snippets_dir = '~/.vim/bundle/snipmate-snippets/snippets'
+let g:vitality_fix_focus = 0
 
 " Java complete maven addition
 let g:mvn_project = ''
