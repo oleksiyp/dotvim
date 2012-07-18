@@ -1,5 +1,6 @@
 if has("gui_running")
     set guioptions-=L
+    set guioptions-=T
 
     if has('gui_macvim')
         set macmeta
