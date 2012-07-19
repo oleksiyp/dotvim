@@ -178,7 +178,27 @@ endfunction
 command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
 
 " Ant
-command! -nargs=+ Ant Shell ant <args>
+command! -complete=customlist,ListAntCompletions -nargs=* Ant Shell ant <args>
+fun! ListAntCompletions(A,L,P)
+    let antgoals = [] 
+    let anttargets = split(system('ant -p'),'\n')
+    let i = -1
+    for l in anttargets
+        if i >= 0 && strlen(l) > 0
+            if strpart(l,0,2) != ' -'
+                let antgoals = add(antgoals,strpart(l,1,stridx(l,' ',1)))
+            endif
+            if strpart(l,0,1) == ' '
+                let i = -1
+            endif
+            let i += 1
+        endif
+        if l == 'Main targets:'
+            let i = 0
+        endif 
+    endfor
+    return filter(antgoals,"v:val =~ \'^".a:A."\'") 
+endfun
 
 " Maven
 command! -complete=customlist,ListMavenCompletions -nargs=+ Maven call ShellMvn(<q-args>)
