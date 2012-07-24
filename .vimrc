@@ -66,6 +66,7 @@ set shiftwidth=4
 set wildmenu
 set statusline=\ %f\ %#Keyword#%m%r%h%w%*\ (%l/%L,\ %c)\ %P%=\ %y\ [%{&encoding}:%{&fileformat}]\ \ 
 set laststatus=2
+set timeoutlen=500
 
 " Some options for plugins
 let g:smartusline_hi_replace = 'guibg=#d6aefe guifg=black ctermbg=183 ctermfg=black'
