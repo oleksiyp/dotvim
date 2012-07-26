@@ -134,6 +134,65 @@ endfunction
 au BufWritePost *.java if g:mvn_compile_on_save_enabled | silent call MvnCompileProject() | endif
 command! MavenCompileOnSaveToggle let g:mvn_compile_on_save_enabled = !g:mvn_compile_on_save_enabled | if g:mvn_compile_on_save_enabled | echo "Maven compile on save enabled" | else | echo "Maven compile on save disabled" | endif
 
+" Java generate property setters and getters
+" Operates on ranges and can take two arguments specify what level of visiblity
+" we need for methods e.g. (private, protected or public)
+" first optional argument is get methods visibility level (public by default)
+" second optional argument is set methods visibility level (public by default)
+" generated code is saved into current register (v:register)
+command! -range -nargs=* JavaGenerateBeanProperties :call JavaGenBeanProps(<line1>,<line2>,<f-args>)
+function! JavaGenBeanProps(l1,l2,...)
+    let generatedCode = ''
+    let getType = 'public'
+    let setType = 'public'
+    if a:0 > 0
+        if strpart(a:1,0,2) == 'pu'
+            let getType = 'public'
+        endif
+        if strpart(a:1,0,2) == 'pr'
+            let getType = 'private'
+        endif
+        if strpart(a:1,0,3) == 'pro'
+            let getType = 'protected'
+        endif
+    endif
+    if a:0 > 1
+        if strpart(a:2,0,2) == 'pu'
+            let setType = 'public'
+        endif
+        if strpart(a:2,0,2) == 'pr'
+            let setType = 'private'
+        endif
+        if strpart(a:2,0,3) == 'pro'
+            let setType = 'protected'
+        endif
+    endif
+    let l = a:l1
+    let indlvl = ''
+    let indlvlset = 0
+    while l <= a:l2
+        if indlvlset == 0
+            let [__, indlvl; _] = matchlist(getline(l),'\(\s*\)')
+            let indlvlset = 1
+        endif
+        let [__, type, name; _] = matchlist(getline(l),'\([a-zA-Z_]\+\)\s\+\([a-zA-Z_]\+\)\s*\;')
+        let cName = toupper(strpart(name,0,1)) . strpart(name,1) 
+        let getName = 'get' . cName
+        let setName = 'set' . cName
+        if type == 'boolean'
+            let getName = 'is' . cName
+        endif
+        " generating getter
+        let generatedCode .= indlvl . getType . ' ' . type . ' ' . getName . "(){\n"
+        let generatedCode .= indlvl . '    return this.' . name .";\n" .indlvl. "}\n\n"
+        " generating setter
+        let generatedCode .= indlvl . setType . ' void ' . setName . '(' . type . ' ' . name . "){\n"
+        let generatedCode .= indlvl . '    this.' . name .' = ' . name . ";\n" .indlvl. "}\n\n"
+        let l += 1
+    endwhile
+    :call setreg(v:register,generatedCode)
+endfunction
+
 " Java Related settings
 au FileType java syntax keyword Keyword package import public protected private abstract class interface extends implements static final volatile synchronized try catch finally throws | syntax keyword Type Integer Short Byte Float Double Char Boolean Long String | match Type /^import\s\+.*\.\zs.*\ze;/
 au BufRead,BufNewFile *.jar,*.war,*.ear,*.sar,*.rar set filetype=zip
