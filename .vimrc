@@ -30,6 +30,7 @@ Bundle 'vim-scripts/mru.vim'
 Bundle 'Raimondi/delimitMate'
 Bundle 'oscarh/vimerl'
 Bundle 'sjl/vitality.vim'
+Bundle 'luizribeiro/javacomplete'
 
 " vim-scripts repos
 Bundle 'L9'
@@ -38,7 +39,6 @@ Bundle 'bufexplorer.zip'
 Bundle 'ZoomWin'
 Bundle 'netrw.vim'
 Bundle 'Gundo'
-Bundle 'javacomplete'
 
 filetype plugin indent on
 syntax on
