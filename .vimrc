@@ -31,6 +31,7 @@ Bundle 'Raimondi/delimitMate'
 Bundle 'oscarh/vimerl'
 Bundle 'sjl/vitality.vim'
 Bundle 'luizribeiro/javacomplete'
+Bundle 'benmills/vimux'
 
 " vim-scripts repos
 Bundle 'L9'
