@@ -33,6 +33,7 @@ Bundle 'sjl/vitality.vim'
 Bundle 'luizribeiro/javacomplete'
 Bundle 'benmills/vimux'
 Bundle 'troydm/pb.vim'
+Bundle 'tmhedberg/matchit'
 
 " vim-scripts repos
 Bundle 'L9'
