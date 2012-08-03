@@ -195,6 +195,35 @@ function! JavaGenBeanProps(l1,l2,...)
     :call setreg(v:register,generatedCode)
 endfunction
 
+" Java package name command
+let g:java_package_name_search_dir_limit = 5
+let g:java_package_name_read_limit = 100
+command! JavaPackageName :exe 'normal ggOpackage '.GetJavaPackageName().';<esc>B'
+function! GetJavaPackageName()
+    let curdir = expand('%:h:p')
+    let suffix_p = ''
+    let p = g:java_package_name_search_dir_limit 
+    while p > 0
+       let pn = GetJavaPackageNameDir(curdir) 
+       if pn != '' 
+           return pn . suffix_p 
+       else
+           let suffix_p = '.' . fnamemodify(curdir,':t') . suffix_p
+           let curdir = fnamemodify(curdir,':h')
+       endif
+       let p -= 1
+    endwhile
+endfunction
+function! GetJavaPackageNameDir(dir)
+    for j in split(globpath(a:dir,'*.java'),"\n")
+        for line in readfile(j, '', g:java_package_name_read_limit)
+            let p = matchlist(line,'package\s\+\([a-zA-Z.]*\)\s*;')
+            if !empty(p) | return p[1] | endif
+        endfor
+    endfor
+    return ''
+endfunction
+
 " Java Related settings
 au FileType java syntax keyword Keyword package import public protected private abstract class interface extends implements static final volatile synchronized try catch finally throws | syntax keyword Type Integer Short Byte Float Double Char Boolean Long String | match Type /^import\s\+.*\.\zs.*\ze;/
 au BufRead,BufNewFile *.jar,*.war,*.ear,*.sar,*.rar set filetype=zip
