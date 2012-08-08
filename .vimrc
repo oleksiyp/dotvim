@@ -504,7 +504,14 @@ nnoremap <C-x>\| <C-w>v
 nnoremap <C-x>- <C-w>s
 
 " Term command for starting bash
-command! Term ConqueTerm bash
+command! Term if GetTermBufnr() != -1 | exe ':b'.GetTermBufnr().' | :startinsert' | else | exe ':ConqueTerm bash' | endif
+command! TermNew ConqueTerm bash
+function! GetTermBufnr()
+    for i in range(1, bufnr('$'))
+        if match(bufname(i),'bash - [0-9]*') == 0 | return i | endif
+    endfor
+    return -1
+endfunction
 
 " Invisible characters
 if !(has("win16") || has("win32") || has("win64"))
