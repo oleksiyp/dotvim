@@ -39,7 +39,6 @@ Bundle 'tmhedberg/matchit'
 Bundle 'L9'
 Bundle 'FuzzyFinder'
 Bundle 'bufexplorer.zip'
-Bundle 'ZoomWin'
 Bundle 'netrw.vim'
 Bundle 'Gundo'
 
@@ -339,6 +338,23 @@ function! OpenBuffer()
     :FufBuffer
 endfunction
 noremap <silent> <C-b> :call OpenBuffer()<CR>
+
+" ZoomWin in new tab
+function! ZoomWinToggle()
+    if gettabvar(tabpagenr(),'ZoomWin') == '' 
+        let wbuftype = getbufvar('%','&buftype')
+        if bufname('%') != '' && tabpagewinnr(tabpagenr(),'$') > 1 && !(wbuftype == 'help' || wbuftype == 'quickfix' || wbuftype == 'nofile' || wbuftype == 'nowrite')
+            tabnew %
+            call settabvar(tabpagenr(),'ZoomWin',&stal)
+            set showtabline=0
+        endif
+    else
+        let &stal = gettabvar(tabpagenr(),'ZoomWin')
+        tabclose
+    endif
+endfunction
+command! ZoomWinToggle call ZoomWinToggle()
+nnoremap <C-w>o :ZoomWinToggle<CR>
 
 " C-Tab buffer switching
 let g:switch_buf_time = reltime() 
