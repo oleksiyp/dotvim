@@ -508,7 +508,7 @@ command! Term if GetTermBufnr() != -1 | exe ':b'.GetTermBufnr().' | :startinsert
 command! TermNew ConqueTerm bash
 function! GetTermBufnr()
     for i in range(1, bufnr('$'))
-        if match(bufname(i),'bash - [0-9]*') == 0 | return i | endif
+        if buflisted(i) && match(bufname(i),'bash - [0-9]*') == 0 | return i | endif
     endfor
     return -1
 endfunction
