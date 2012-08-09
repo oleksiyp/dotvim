@@ -369,14 +369,14 @@ endfunction
 function! SwitchBuf()
     let tdiff = SwitchTimeDiff(g:switch_buf_time,reltime())
     let g:switch_buf_time = reltime()
-    if tdiff <= 0.25 && bufname('%') != '[BufExplorer]'
-        :BufExplorer
-    else
+    if tdiff <= 0.25 || bufname('%') == '[BufExplorer]'
         let n = bufnr('%')
         :bn
         while n != bufnr('%') && getbufvar('%','&buftype') == 'nofile'
             :bn
         endwhile
+    else
+        :BufExplorer
     endif
 endfunction
 
