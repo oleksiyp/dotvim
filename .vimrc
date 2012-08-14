@@ -34,6 +34,7 @@ Bundle 'luizribeiro/javacomplete'
 Bundle 'benmills/vimux'
 Bundle 'troydm/pb.vim'
 Bundle 'tmhedberg/matchit'
+Bundle 'troydm/syntastic'
 
 " vim-scripts repos
 Bundle 'L9'
@@ -83,6 +84,14 @@ let g:viewdoc_open = "topleft new"
 let g:no_viewdoc_abbrev = 1
 let g:snippets_dir = '~/.vim/bundle/snipmate-snippets/snippets'
 let g:vitality_fix_focus = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_enable_signs = 1
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
+" let g:syntastic_java_checker = 'checkstyle'
+" let g:syntastic_java_checkstyle_classpath = '/home/troydm/checkstyle-5.5/checkstyle-5.5-all.jar'
+" let g:syntastic_java_checkstyle_conf_file = '/home/troydm/checkstyle-5.5/sun_checks.xml'
+
 
 " Java complete maven addition
 let g:mvn_project = ''
@@ -510,8 +519,8 @@ nnoremap <silent> <esc>[1;6A <C-w>5-
 nnoremap <silent> <esc>[1;6B <C-w>5+
 
 " Visual tab mapping
-vmap <Tab> >gv
-vmap <S-Tab> <gv
+vnoremap > >gv
+vnoremap < <gv
 
 " Some emacs inspired keymappings
 nnoremap <C-x>x <C-w>q
