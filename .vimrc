@@ -354,10 +354,13 @@ noremap <silent> <C-b> :call OpenBuffer()<CR>
 function! ZoomWinToggle()
     if gettabvar(tabpagenr(),'ZoomWin') == '' 
         let wbuftype = getbufvar('%','&buftype')
+        let tabpage = tabpagenr()
         if bufname('%') != '' && tabpagewinnr(tabpagenr(),'$') > 1 && !(wbuftype == 'help' || wbuftype == 'quickfix' || wbuftype == 'nofile' || wbuftype == 'nowrite')
             tabnew %
-            call settabvar(tabpagenr(),'ZoomWin',&stal)
-            set showtabline=0
+            if tabpage != tabpagenr()
+                call settabvar(tabpagenr(),'ZoomWin',&stal)
+                set showtabline=0
+            endif
         endif
     else
         let &stal = gettabvar(tabpagenr(),'ZoomWin')
