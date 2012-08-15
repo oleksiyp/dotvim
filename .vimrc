@@ -35,6 +35,7 @@ Bundle 'benmills/vimux'
 Bundle 'troydm/pb.vim'
 Bundle 'tmhedberg/matchit'
 Bundle 'troydm/syntastic'
+Bundle 'godlygeek/tabular'
 
 " vim-scripts repos
 Bundle 'L9'
