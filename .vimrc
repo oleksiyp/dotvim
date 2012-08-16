@@ -355,8 +355,12 @@ function! ZoomWinToggle()
     if gettabvar(tabpagenr(),'ZoomWin') == '' 
         let wbuftype = getbufvar('%','&buftype')
         let tabpage = tabpagenr()
+        let bnr = bufnr('%')
+        let pos = getpos('.')
         if bufname('%') != '' && tabpagewinnr(tabpagenr(),'$') > 1 && !(wbuftype == 'help' || wbuftype == 'quickfix' || wbuftype == 'nofile' || wbuftype == 'nowrite')
-            tabnew %
+            tabnew
+            exe 'buffer '.bnr
+            call setpos('.',pos)
             if tabpage != tabpagenr()
                 call settabvar(tabpagenr(),'ZoomWin',&stal)
                 set showtabline=0
@@ -369,6 +373,7 @@ function! ZoomWinToggle()
 endfunction
 command! ZoomWinToggle call ZoomWinToggle()
 nnoremap <C-w>o :ZoomWinToggle<CR>
+nnoremap <C-w><C-o> :ZoomWinToggle<CR>
 
 " C-Tab buffer switching
 let g:switch_buf_time = reltime() 
