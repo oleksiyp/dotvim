@@ -355,12 +355,8 @@ function! ZoomWinToggle()
     if gettabvar(tabpagenr(),'ZoomWin') == '' 
         let wbuftype = getbufvar('%','&buftype')
         let tabpage = tabpagenr()
-        let bnr = bufnr('%')
-        let pos = getpos('.')
         if bufname('%') != '' && tabpagewinnr(tabpagenr(),'$') > 1 && !(wbuftype == 'help' || wbuftype == 'quickfix' || wbuftype == 'nofile' || wbuftype == 'nowrite')
-            tabnew
-            exe 'buffer '.bnr
-            call setpos('.',pos)
+            tab sb
             if tabpage != tabpagenr()
                 call settabvar(tabpagenr(),'ZoomWin',&stal)
                 set showtabline=0
