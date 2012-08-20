@@ -261,25 +261,121 @@ au FileType xml setlocal sw=2 sts=2
 " autocmd VimEnter * wincmd p
 
 " Shell
+if !has("python")
+    echo "Shell needs vim compiled with +python option"
+    finish
+endif
+
+python << EOF
+import vim, sys, os, subprocess, threading, signal, time, fcntl
+
+cmds = {}
+pids = {}
+
+def ExecuteCmd(cmd):
+    global cmds,pids
+    if TermCmd(cmd):
+        cmds[cmd] = threading.Thread(target=ExecuteInSubprocess, args=(cmd,))
+        cmds[cmd].start()
+
+def TermCmd(cmd):
+    global cmds,pids
+    if cmd in cmds and cmd in pids:
+        os.kill(pids[cmd],signal.SIGTERM)
+        if cmd in cmds:
+            cmds[cmd].join(15.0)
+            if cmd in pids:
+                vim.command("echomsg 'Shell command "+cmd+" is still running'")
+                return False
+    return True
+
+def KillCmd(cmd):
+    global cmds,pids
+    if cmd in cmds and cmd in pids:
+        os.kill(pids[cmd],signal.SIGKILL)
+        if cmd in cmds:
+            cmds[cmd].join(15.0)
+            if cmd in pids:
+                vim.command("echomsg 'Shell command "+cmd+" is still running'")
+                return False
+    return True
+
+def ExecuteInSubprocess(cmd):
+    global cmds,pids
+    p = subprocess.Popen(cmd+" 2>&1", shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    fcntl.fcntl(p.stdout.fileno(), fcntl.F_SETFL, os.O_NONBLOCK)
+    pids[cmd] = p.pid
+    time.sleep(0.5)
+    retval = None
+    out = ''
+    first = True
+    buf = vim.current.buffer
+    try:
+        vim.command("normal dGG")
+        vim.command("silent! redraw!")
+    except vim.error:
+        pass
+    while True:
+        try:
+            outread = p.stdout.read()
+            if len(outread) > 0:
+                out += outread
+                while out.find("\n") != -1:
+                    out = out.split("\n")
+                    lines = out[:-1]
+                    out = out[-1]
+                    try:
+                        if first:
+                            buf[0] = lines[0]
+                            first = False
+                            lines = lines[1:]
+                            if len(lines) > 0:
+                                buf.append(lines)
+                        else:
+                            buf.append(lines)
+                    except vim.error:
+                        pass
+                try:
+                    if vim.current.buffer.number == buf.number:
+                        vim.command("call setpos('.',["+str(buf.number)+","+str(len(buf))+",0,0])")
+                    vim.command("silent! redraw!")
+                except vim.error:
+                    pass
+            else:
+                retval = p.poll()
+                if retval != None:
+                    pids.pop(cmd)
+                    break
+        except IOError:
+            pass
+        time.sleep(0.5)
+    try:
+        if len(out) > 0:
+            buf.append(out)
+        buf.append(["","Shell command "+cmd+" completed with return value "+str(retval)])
+        vim.command("silent! redraw!")
+    except vim.error:
+        pass
+    cmds.pop(cmd)
+EOF
+
 function! s:ExecuteInShell(command)
     let command = join(map(split(a:command), 'expand(v:val)'))
     let winnr = bufwinnr('^' . command . '$')
     if winnr < 0
         execute &lines/3 . 'sp ' . fnameescape(command)
+        setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap
+        exe "au BufWipeout <buffer> ShellTerm ".command
+        exe "python ExecuteCmd('".command."')"
     else
-        execute winnr . 'wincmd w'
+        exe winnr . 'wincmd w'
+        exe "python ExecuteCmd('".command."')"
     endif
-    setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap number
-    echo 'Execute ' . command . '...'
-    silent! execute 'silent %!'. command
-    if line('$') < &lines/3 && (line('$')-(&lines/3)+1) < 0
-        silent! execute 'resize '. (line('$')-(&lines/3)+1)
-    endif
-    normal G
-    silent! redraw
-    echo 'Shell command ' . command . ' executed.'
 endfunction
 command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
+command! -complete=shellcmd -nargs=+ ShellTerm python TermCmd(<q-args>)
+command! -complete=shellcmd -nargs=+ ShellKill python KillCmd(<q-args>)
+command! ShellsRunning python print pids
 
 " Ant
 command! -complete=customlist,ListAntCompletions -nargs=* Ant Shell ant <args>
