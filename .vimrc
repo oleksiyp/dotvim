@@ -189,7 +189,16 @@ function! JavaGenBeanProps(l1,l2,...)
             let [__, indlvl; _] = matchlist(getline(l),'\(\s*\)')
             let indlvlset = 1
         endif
-        let [__, type, name; _] = matchlist(getline(l),'\([a-zA-Z_]\+\)\s\+\([a-zA-Z_]\+\)\s*\;')
+        let m = matchlist(getline(l),'\([a-zA-Z_0-9]\+\)\s\+\([a-zA-Z_0-9]\+\)\s*\;')
+        if empty(m)
+            let m = matchlist(getline(l),'\([a-zA-Z_0-9]\+\)\s\+\([a-zA-Z_0-9]\+\)\s*=')
+        endif
+        if empty(m)
+            let l += 1
+            continue
+        endif
+        let type = m[1]
+        let name = m[2]
         let cName = toupper(strpart(name,0,1)) . strpart(name,1) 
         let getName = 'get' . cName
         let setName = 'set' . cName
