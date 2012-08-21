@@ -300,7 +300,7 @@ fun! ShellMvn(command)
     if a:command =~ '^archetype:generate'
         execute '!mvn '.a:command  
     else
-        call s:ExecuteInShell('mvn '.a:command) 
+        execute 'Shell mvn '.a:command 
     endif
 endfun
 fun! ListMavenCompletions(A,L,P)
