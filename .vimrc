@@ -37,6 +37,7 @@ Bundle 'tmhedberg/matchit'
 Bundle 'troydm/syntastic'
 Bundle 'godlygeek/tabular'
 Bundle 'troydm/shellasync.vim'
+Bundle 'troydm/asyncfinder.vim'
 
 " vim-scripts repos
 Bundle 'L9'
@@ -82,6 +83,11 @@ let g:smartusline_string_to_highlight = ' %f '
 let g:ConqueTerm_InsertOnEnter = 0
 let g:ConqueTerm_CWInsert = 1
 let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|class)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|(^|[/\\])build($|[/\\])'
+let g:ctrlp_custom_ignore = {
+\ 'dir':  '\v[\/](\.git|\.hg|\.svn|\.AppleDouble)$',
+\ 'file': '\.swp$\|\.class$\|\.exe$\|\.so$\|\.dll$',
+\ }
+let g:ctrlp_working_path_mode = '0'
 let g:viewdoc_open = "topleft new"
 let g:no_viewdoc_abbrev = 1
 let g:snippets_dir = '~/.vim/bundle/snipmate-snippets/snippets'
