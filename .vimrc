@@ -11,7 +11,7 @@ Bundle 'gmarik/vundle'
 " Bundles
 
 " original repos on github
-Bundle 'mileszs/ack.vim'
+Bundle 'troydm/ack.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'tpope/vim-surround'
@@ -38,6 +38,12 @@ Bundle 'troydm/syntastic'
 Bundle 'godlygeek/tabular'
 Bundle 'troydm/shellasync.vim'
 Bundle 'troydm/asyncfinder.vim'
+Bundle 'troydm/easybuffer.vim'
+Bundle 'chaquotay/ftl-vim-syntax'
+" Bundle 'Shougo/vimproc'
+" Bundle 'Shougo/unite.vim'
+" Bundle 'Shougo/vimfiler'
+" Bundle 'Shougo/vimshell'
 
 " vim-scripts repos
 Bundle 'L9'
@@ -100,7 +106,7 @@ let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [], 'passive
 " let g:syntastic_java_checker = 'checkstyle'
 " let g:syntastic_java_checkstyle_classpath = '/home/troydm/checkstyle-5.5/checkstyle-5.5-all.jar'
 " let g:syntastic_java_checkstyle_conf_file = '/home/troydm/checkstyle-5.5/sun_checks.xml'
-
+highlight link NERDTreeDir Identifier
 
 " Java complete maven addition
 let g:mvn_project = ''
@@ -260,6 +266,8 @@ au FileType java nnoremap <buffer> ][ ?}\s*$<CR>^:nohlsearch<CR>:echo 'prev }'<C
 au FileType java nnoremap <buffer> ]] $/{\s*$<CR>^:nohlsearch<CR>:echo 'next {'<CR>
 au FileType java nnoremap <buffer> [] $/}\s*$<CR>^:nohlsearch<CR>:echo 'next }'<CR>
 
+au BufRead,BufNewFile *.ftl setfiletype ftl
+
 " Erlang Related settings
 let erlang_folding = 1
 au FileType erlang setlocal foldenable foldopen=all foldclose=all
@@ -379,14 +387,14 @@ endfunction
 function! SwitchBuf()
     let tdiff = SwitchTimeDiff(g:switch_buf_time,reltime())
     let g:switch_buf_time = reltime()
-    if tdiff <= 0.25 || bufname('%') == '[BufExplorer]'
+    if tdiff <= 0.25 || bufname('%') == 'easybuffer'
         let n = bufnr('%')
         :bn
         while n != bufnr('%') && getbufvar('%','&buftype') == 'nofile'
             :bn
         endwhile
     else
-        :BufExplorer
+        :EasyBuffer
     endif
 endfunction
 
