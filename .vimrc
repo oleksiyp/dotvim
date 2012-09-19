@@ -40,17 +40,16 @@ Bundle 'troydm/shellasync.vim'
 Bundle 'troydm/asyncfinder.vim'
 Bundle 'troydm/easybuffer.vim'
 Bundle 'chaquotay/ftl-vim-syntax'
+Bundle 'mbbill/undotree'
 " Bundle 'Shougo/vimproc'
 " Bundle 'Shougo/unite.vim'
 " Bundle 'Shougo/vimfiler'
 " Bundle 'Shougo/vimshell'
 
 " vim-scripts repos
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-Bundle 'bufexplorer.zip'
-Bundle 'netrw.vim'
-Bundle 'Gundo'
+" Bundle 'L9'
+" Bundle 'FuzzyFinder'
+" Bundle 'Gundo'
 
 filetype plugin indent on
 syntax on
@@ -265,7 +264,6 @@ au FileType java nnoremap <buffer> [[ ?{\s*$<CR>^:nohlsearch<CR>:echo 'prev {'<C
 au FileType java nnoremap <buffer> ][ ?}\s*$<CR>^:nohlsearch<CR>:echo 'prev }'<CR>
 au FileType java nnoremap <buffer> ]] $/{\s*$<CR>^:nohlsearch<CR>:echo 'next {'<CR>
 au FileType java nnoremap <buffer> [] $/}\s*$<CR>^:nohlsearch<CR>:echo 'next }'<CR>
-
 au BufRead,BufNewFile *.ftl setfiletype ftl
 
 " Erlang Related settings
@@ -339,19 +337,9 @@ function! OpenFile()
         endif
         :wincmd w 
     endif
-    :FufFile
+    :AsyncFinder 
 endfunction
 noremap <silent> <C-f> :call OpenFile()<CR>
-function! OpenBuffer()
-    if stridx(bufname("%"),"NERD_tree") >= 0
-        if winnr("$") == 1
-           execute &columns/9 . 'vs'
-        endif
-        :wincmd w 
-    endif
-    :FufBuffer
-endfunction
-noremap <silent> <C-b> :call OpenBuffer()<CR>
 
 " ZoomWin in new tab
 function! ZoomWinToggle()
@@ -506,14 +494,14 @@ function! WinSwapLeft()
     endif
 endfunction
 
-nnoremap <silent> <esc>[1;3C :call WinMoveRight()<CR>
-nnoremap <silent> <esc>l :call WinMoveRight()<CR>
-nnoremap <silent> <esc>[1;3D :call WinMoveLeft()<CR>
-nnoremap <silent> <esc>h :call WinMoveLeft()<CR>
-nnoremap <silent> <esc>[1;3A :call WinMoveUp()<CR>
-nnoremap <silent> <esc>k :call WinMoveUp()<CR>
-nnoremap <silent> <esc>[1;3B :call WinMoveDown()<CR>
-nnoremap <silent> <esc>j :call WinMoveDown()<CR>
+nnoremap <silent> <esc>[1;3C :silent! call WinMoveRight()<CR>
+nnoremap <silent> <esc>l :silent! call WinMoveRight()<CR>
+nnoremap <silent> <esc>[1;3D :silent! call WinMoveLeft()<CR>
+nnoremap <silent> <esc>h :silent! call WinMoveLeft()<CR>
+nnoremap <silent> <esc>[1;3A :silent! call WinMoveUp()<CR>
+nnoremap <silent> <esc>k :silent! call WinMoveUp()<CR>
+nnoremap <silent> <esc>[1;3B :silent! call WinMoveDown()<CR>
+nnoremap <silent> <esc>j :silent! call WinMoveDown()<CR>
 nnoremap <silent> <esc>[1;10C :call WinSwapRight()<CR>
 nnoremap <silent> <esc>L :call WinSwapRight()<CR>
 nnoremap <silent> <esc>[1;10D :call WinSwapLeft()<CR>
@@ -526,6 +514,16 @@ nnoremap <silent> <esc>[1;6C <C-w>5<
 nnoremap <silent> <esc>[1;6D <C-w>5>
 nnoremap <silent> <esc>[1;6A <C-w>5-
 nnoremap <silent> <esc>[1;6B <C-w>5+
+
+" shellasync terminal related hack
+au FileType shellasyncterm inoremap <silent> <buffer> <Esc>h <Esc>:silent! call WinMoveLeft()<CR>|
+                         \ inoremap <silent> <buffer> <Esc>j <Esc>:silent! call WinMoveDown()<CR>|
+                         \ inoremap <silent> <buffer> <Esc>k <Esc>:silent! call WinMoveUp()<CR>|
+                         \ inoremap <silent> <buffer> <Esc>l <Esc>:silent! call WinMoveRight()<CR>|
+                         \ inoremap <silent> <buffer> <Esc>[1;3D <Esc>:silent! call WinMoveLeft()<CR>|
+                         \ inoremap <silent> <buffer> <Esc>[1;3B <Esc>:silent! call WinMoveDown()<CR>|
+                         \ inoremap <silent> <buffer> <Esc>[1;3A <Esc>:silent! call WinMoveUp()<CR>|
+                         \ inoremap <silent> <buffer> <Esc>[1;3C <Esc>:silent! call WinMoveRight()<CR>
 
 " Visual tab mapping
 vnoremap > >gv
