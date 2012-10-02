@@ -331,7 +331,7 @@ let g:pb_command_prefix = 'ssh mini '
 
 " FuzzyFinder keybindings 
 function! OpenFile()
-    if stridx(bufname("%"),"NERD_tree") >= 0
+    if getbufvar('%','&filetype') == 'easytree'
         if winnr("$") == 1
            execute &columns/9 . 'vs'
         endif
