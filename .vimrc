@@ -42,6 +42,7 @@ Bundle 'troydm/easybuffer.vim'
 Bundle 'troydm/easytree.vim'
 Bundle 'chaquotay/ftl-vim-syntax'
 Bundle 'mbbill/undotree'
+Bundle 'vim-scripts/cbackup.vim'
 " Bundle 'Shougo/vimproc'
 " Bundle 'Shougo/unite.vim'
 " Bundle 'Shougo/vimfiler'
@@ -79,6 +80,7 @@ set wildmenu
 set statusline=\ %f\ %#Keyword#%m%r%h%w%*\ (%l/%L,\ %c)\ %P%=\ %y\ [%{&encoding}:%{&fileformat}]\ \ 
 set laststatus=2
 set timeoutlen=500
+set directory^=~/.backups
 
 " Some options for plugins
 let g:smartusline_hi_replace = 'guibg=#d6aefe guifg=black ctermbg=183 ctermfg=black'
