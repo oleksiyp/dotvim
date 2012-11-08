@@ -261,7 +261,7 @@ endfunction
 " Java Related settings
 au FileType java syntax keyword Keyword package import public protected private abstract class interface extends implements static final volatile synchronized try catch finally throws | syntax keyword Type Integer Short Byte Float Double Char Boolean Long String | match Type /^import\s\+.*\.\zs.*\ze;/
 au BufRead,BufNewFile *.jar,*.war,*.ear,*.sar,*.rar set filetype=zip
-au FileType java setlocal foldmethod=syntax foldclose=all foldlevel=1 foldcolumn=1 foldenable foldopen=all omnifunc=MvnJavaComplete completefunc=MvnJavaCompleteParamsInfo
+au FileType java setlocal foldmethod=syntax foldclose=all foldlevel=1 foldcolumn=0 foldnestmax=2 foldenable foldopen=all omnifunc=MvnJavaComplete completefunc=MvnJavaCompleteParamsInfo
 au FileType java nnoremap <buffer> [[ ?{\s*$<CR>^:nohlsearch<CR>:echo 'prev {'<CR>
 au FileType java nnoremap <buffer> ][ ?}\s*$<CR>^:nohlsearch<CR>:echo 'prev }'<CR>
 au FileType java nnoremap <buffer> ]] $/{\s*$<CR>^:nohlsearch<CR>:echo 'next {'<CR>
