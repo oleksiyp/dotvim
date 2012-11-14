@@ -35,6 +35,7 @@
 "  - John Gabriele - spotted bad Ignore-group handling
 "  - Zac Thompson - spotted invisible NonText in low contrast mode
 "  - Christophe-Marie Duquesne - suggested making a Vimball
+"  - Dmitry Geurkov - for making gui theme identical to 256 color terminal theme
 "
 " CONFIGURABLE PARAMETERS:
 "
@@ -99,57 +100,57 @@ if exists("syntax_on")
 endif
 let g:colors_name="zenburn"
 
-hi Boolean         guifg=#dca3a3
-hi Character       guifg=#dca3a3 gui=bold
-hi Comment         guifg=#7f9f7f gui=italic
-hi Conditional     guifg=#f0dfaf gui=bold
-hi Constant        guifg=#dca3a3 gui=bold
+hi Boolean         guifg=#e1bbbc
+hi Character       guifg=#e2bcbd gui=bold
+hi Comment         guifg=#95bf98 gui=italic
+hi Conditional     guifg=#fadeb6 gui=bold
+hi Constant        guifg=#e2bcbd gui=bold
 hi Cursor          guifg=#000d18 guibg=#8faf9f gui=bold
-hi Debug           guifg=#bca3a3 gui=bold
-hi Define          guifg=#ffcfaf gui=bold
-hi Delimiter       guifg=#8f8f8f
+hi Debug           guifg=#e3bdbe gui=bold
+hi Define          guifg=#f9ddb5 gui=bold
+hi Delimiter       guifg=#9fa1a1
 hi DiffAdd         guifg=#709080 guibg=#313c36 gui=bold
 hi DiffChange      guibg=#333333
 hi DiffDelete      guifg=#333333 guibg=#464646
 hi DiffText        guifg=#ecbcbc guibg=#41363c gui=bold
 hi Directory       guifg=#dcdccc gui=bold
 hi ErrorMsg        guifg=#80d4aa guibg=#2f2f2f gui=bold
-hi Exception       guifg=#c3bf9f gui=bold
-hi Float           guifg=#c0bed1
+hi Exception       guifg=#bebfc0 gui=bold
+hi Float           guifg=#c7c8c9
 hi FoldColumn      guifg=#93b3a3 guibg=#3f4040
 hi Folded          guifg=#93b3a3 guibg=#3f4040
-hi Function        guifg=#efef8f
-hi Identifier      guifg=#efdcbc
+hi Function        guifg=#ebee83
+hi Identifier      guifg=#fadeb6 gui=bold
 hi IncSearch       guibg=#f8f893 guifg=#385f38
-hi Keyword         guifg=#f0dfaf gui=bold
-hi Label           guifg=#dfcfaf gui=underline
-hi LineNr          guifg=#9fafaf guibg=#262626
-hi Macro           guifg=#ffcfaf gui=bold
+hi Keyword         guifg=#f9ddb5 gui=bold
+hi Label           guifg=#dbdcb6 gui=underline
+hi LineNr          guifg=#b7b8b9 guibg=#444444
+hi Macro           guifg=#f7dcb4 gui=bold
 hi ModeMsg         guifg=#ffcfaf gui=none
 hi MoreMsg         guifg=#ffffff gui=bold
-hi Number          guifg=#8cd0d3
-hi Operator        guifg=#f0efd0
-hi PreCondit       guifg=#dfaf8f gui=bold
-hi PreProc         guifg=#ffcfaf gui=bold
+hi Number          guifg=#7fc5c5
+hi Operator        guifg=#f4fad7
+hi PreCondit       guifg=#e1bb94 gui=bold
+hi PreProc         guifg=#f9ddb5 gui=bold
 hi Question        guifg=#ffffff gui=bold
-hi Repeat          guifg=#ffd7a7 gui=bold
+hi Repeat          guifg=#fadeb6 gui=bold
 hi Search          guifg=#ffffe0 guibg=#284f28
-hi SpecialChar     guifg=#dca3a3 gui=bold
-hi SpecialComment  guifg=#82a282 gui=bold
-hi Special         guifg=#cfbfaf
+hi SpecialChar     guifg=#e2bcbd gui=bold
+hi SpecialComment  guifg=#95c098 gui=bold
+hi Special         guifg=#e1bbbc
 hi SpecialKey      guifg=#9ece9e
-hi Statement       guifg=#e3ceab gui=none
-hi StatusLine      guifg=#313633 guibg=#ccdc90
+hi Statement       guifg=#d4d5b1 gui=none
+hi StatusLine      guifg=#303030 guibg=#bbbd97
 hi StatusLineNC    guifg=#2e3330 guibg=#88b090
-hi StorageClass    guifg=#c3bf9f gui=bold
-hi String          guifg=#cc9393
-hi Structure       guifg=#efefaf gui=bold
-hi Tag             guifg=#e89393 gui=bold
+hi StorageClass    guifg=#bfc0c1 gui=bold
+hi String          guifg=#ea9a9a
+hi Structure       guifg=#f5faaf gui=bold
+hi Tag             guifg=#e2bcbd gui=bold
 hi Title           guifg=#efefef gui=bold
-hi Todo            guifg=#dfdfdf guibg=bg gui=bold
-hi Typedef         guifg=#dfe4cf gui=bold
-hi Type            guifg=#dfdfbf gui=bold
-hi Underlined      guifg=#dcdccc gui=underline
+hi Todo            guifg=#95c098 guibg=bg gui=bold
+hi Typedef         guifg=#dfe1e1 gui=bold
+hi Type            guifg=#dddeb7 gui=bold
+hi Underlined      guifg=#dedfe0 gui=underline
 hi VertSplit       guifg=#2e3330 guibg=#688060
 hi VisualNOS       guifg=#333333 guibg=#f18c96 gui=bold,underline
 hi WarningMsg      guifg=#ffffff guibg=#333333 gui=bold
@@ -213,7 +214,7 @@ if &t_Co > 255
     hi Todo            ctermfg=108   ctermbg=234     cterm=bold
     hi Typedef         ctermfg=253   cterm=bold
     hi Type            ctermfg=187   cterm=bold
-    hi Underlined      ctermfg=188   ctermbg=234     cterm=bold
+    hi Underlined      ctermfg=188   ctermbg=234     cterm=underline
     hi VertSplit       ctermfg=236   ctermbg=65
     hi VisualNOS       ctermfg=236   ctermbg=210     cterm=bold
     hi WarningMsg      ctermfg=15    ctermbg=236     cterm=bold
@@ -300,7 +301,7 @@ if exists("g:zenburn_high_Contrast")
     hi NonText         guifg=#404040 gui=bold
 else
     " Original, lighter background
-    hi Normal          guifg=#dcdccc guibg=#4a4a4a
+    hi Normal          guifg=#d0d1d2 guibg=#3a3a3a
     hi CursorLine      guibg=#434443
     hi Pmenu           guibg=#2c2e2e guifg=#9f9f9f
     hi PMenuSel        guibg=#242424 guifg=#d0d0a0 gui=bold
@@ -323,8 +324,8 @@ if exists("g:zenburn_alternate_Visual")
     hi VisualNOS       guifg=#000000 guibg=#71d3b4 gui=none
 else
     " use default visual
-    hi Visual          guifg=#233323 guibg=#71d3b4 gui=none
-    hi VisualNOS       guifg=#233323 guibg=#71d3b4 gui=none
+    hi Visual          guibg=#6c6c6c gui=none
+    hi VisualNOS       guibg=#6c6c6c gui=none
 endif
 
 if exists("g:zenburn_alternate_Error")
@@ -332,21 +333,21 @@ if exists("g:zenburn_alternate_Error")
     hi Error        guifg=#e37170 guibg=#664040 gui=bold
 else
     " default is something more zenburn-compatible
-    hi Error        guifg=#e37170 guibg=#3d3535 gui=none
+    hi Error        guifg=#e3de81 guibg=#875f5f gui=bold
 endif
 
 if exists("g:zenburn_alternate_Include")
     " original setting
-    hi Include      guifg=#ffcfaf gui=bold
+    hi Include      guifg=#dddedf gui=bold
 else
     " new, less contrasted one
-    hi Include      guifg=#dfaf8f gui=bold
+    hi Include      guifg=#dddedf gui=bold
 endif
 
 if exists("g:zenburn_color_also_Ignore")
     " color the Ignore groups
     " note: if you get strange coloring for your files, turn this off (unlet)
-    hi Ignore guifg=#545a4f
+    hi Ignore guifg=#dddedf
 endif
 
 " TODO check for more obscure syntax groups that they're ok
