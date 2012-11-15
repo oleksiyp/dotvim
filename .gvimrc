@@ -5,6 +5,7 @@ if has("gui_running")
 
     if has('gui_macvim')
         set macmeta
+        set guicursor+=a:blinkwait0
     endif
 
     " Some meta mappings

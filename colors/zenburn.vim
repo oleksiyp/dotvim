@@ -105,7 +105,7 @@ hi Character       guifg=#e2bcbd gui=bold
 hi Comment         guifg=#95bf98 gui=italic
 hi Conditional     guifg=#fadeb6 gui=bold
 hi Constant        guifg=#e2bcbd gui=bold
-hi Cursor          guifg=#000d18 guibg=#8faf9f gui=bold
+hi Cursor          guifg=#000d18 guibg=#a3a29e gui=bold
 hi Debug           guifg=#e3bdbe gui=bold
 hi Define          guifg=#f9ddb5 gui=bold
 hi Delimiter       guifg=#9fa1a1
@@ -240,7 +240,7 @@ if &t_Co > 255
         endif
     else
         hi Normal ctermfg=188 ctermbg=237
-        hi Cursor          ctermbg=109
+        hi Cursor  ctermfg=233 ctermbg=109
         hi diffadd         ctermbg=237
         hi diffdelete      ctermbg=238
         hi difftext        ctermbg=237
