@@ -11,7 +11,7 @@ Bundle 'gmarik/vundle'
 " Bundles
 
 " original repos on github
-Bundle 'troydm/ack.vim'
+Bundle 'mileszs/ack.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'tpope/vim-surround'
