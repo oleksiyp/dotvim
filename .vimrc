@@ -105,6 +105,7 @@ let g:syntastic_enable_signs = 1
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [], 'passive_filetypes': [] }
+" let g:syntastic_java_javac_config_file_enabled = 1
 " let g:syntastic_java_checker = 'checkstyle'
 " let g:syntastic_java_checkstyle_classpath = '/home/troydm/checkstyle-5.5/checkstyle-5.5-all.jar'
 " let g:syntastic_java_checkstyle_conf_file = '/home/troydm/checkstyle-5.5/sun_checks.xml'
@@ -283,9 +284,25 @@ au FileType xml setlocal sw=2 sts=2
 " Start NERDTree on startup
 " autocmd VimEnter * NERDTree
 " autocmd VimEnter * wincmd p
+"
+" Switch to file buffer
+function! SwitchToFileBuffer()
+    if &buftype == 'nofile'
+        for w in range(1,winnr('$'))
+            if getbufvar(winbufnr(w),'&buftype') != 'nofile'
+                exe w . "wincmd w"
+                break
+            endif
+        endfor
+    endif
+endfunction
 
 " Ant
-command! -complete=customlist,ListAntCompletions -nargs=* Ant Shell ant <args>
+command! -complete=customlist,ListAntCompletions -nargs=* Ant call ShellAnt(<q-args>)
+fun! ShellAnt(command)
+    call SwitchToFileBuffer()
+    execute 'Shell ant '.a:command 
+endfun
 fun! ListAntCompletions(A,L,P)
     let antgoals = [] 
     let anttargets = split(system('ant -p'),'\n')
@@ -311,6 +328,7 @@ endfun
 command! -complete=customlist,ListMavenCompletions -nargs=+ Maven call ShellMvn(<q-args>)
 command! -complete=customlist,ListMavenCompletions -nargs=+ Mvn call ShellMvn(<q-args>)
 fun! ShellMvn(command)
+    call SwitchToFileBuffer()
     if a:command =~ '^archetype:generate'
         execute '!mvn '.a:command  
     else
