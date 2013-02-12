@@ -40,6 +40,7 @@ Bundle 'troydm/shellasync.vim'
 Bundle 'troydm/asyncfinder.vim'
 Bundle 'troydm/easybuffer.vim'
 Bundle 'troydm/easytree.vim'
+Bundle 'troydm/zoomwintab.vim'
 Bundle 'chaquotay/ftl-vim-syntax'
 Bundle 'mbbill/undotree'
 Bundle 'vim-scripts/cbackup.vim'
@@ -360,27 +361,6 @@ function! OpenFile()
     :AsyncFinder 
 endfunction
 noremap <silent> <C-f> :call OpenFile()<CR>
-
-" ZoomWin in new tab
-function! ZoomWinToggle()
-    if gettabvar(tabpagenr(),'ZoomWin') == '' 
-        let wbuftype = getbufvar('%','&buftype')
-        let tabpage = tabpagenr()
-        if bufname('%') != '' && tabpagewinnr(tabpagenr(),'$') > 1 && !(wbuftype == 'help' || wbuftype == 'quickfix' || wbuftype == 'nofile' || wbuftype == 'nowrite')
-            tab sb
-            if tabpage != tabpagenr()
-                call settabvar(tabpagenr(),'ZoomWin',&stal)
-                set showtabline=0
-            endif
-        endif
-    else
-        let &stal = gettabvar(tabpagenr(),'ZoomWin')
-        tabclose
-    endif
-endfunction
-command! ZoomWinToggle call ZoomWinToggle()
-nnoremap <C-w>o :ZoomWinToggle<CR>
-nnoremap <C-w><C-o> :ZoomWinToggle<CR>
 
 " C-Tab buffer switching
 let g:switch_buf_time = reltime() 
