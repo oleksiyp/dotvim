@@ -110,6 +110,7 @@ let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [], 'passive
 " let g:syntastic_java_checker = 'checkstyle'
 " let g:syntastic_java_checkstyle_classpath = '/home/troydm/checkstyle-5.5/checkstyle-5.5-all.jar'
 " let g:syntastic_java_checkstyle_conf_file = '/home/troydm/checkstyle-5.5/sun_checks.xml'
+let g:easybuffer_use_zoomwintab = 1
 
 " Java complete maven addition
 let g:mvn_project = ''
