@@ -15,7 +15,6 @@ Bundle 'mileszs/ack.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'tpope/vim-surround'
-" Bundle 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
@@ -50,9 +49,7 @@ Bundle 'vim-scripts/cbackup.vim'
 " Bundle 'Shougo/vimshell'
 
 " vim-scripts repos
-" Bundle 'L9'
-" Bundle 'FuzzyFinder'
-" Bundle 'Gundo'
+Bundle 'YankRing.vim'
 
 filetype plugin indent on
 syntax on
@@ -74,7 +71,6 @@ set ignorecase
 set smartcase
 set incsearch
 set smartindent
-set cursorline
 set softtabstop=4
 set shiftwidth=4
 set wildmenu
@@ -111,6 +107,20 @@ let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [], 'passive
 " let g:syntastic_java_checkstyle_classpath = '/home/troydm/checkstyle-5.5/checkstyle-5.5-all.jar'
 " let g:syntastic_java_checkstyle_conf_file = '/home/troydm/checkstyle-5.5/sun_checks.xml'
 let g:easybuffer_use_zoomwintab = 1
+
+" Insert mode cursor line
+au InsertEnter * set cursorline
+au InsertLeave * set nocursorline
+
+" Code fold
+fun! FoldText()
+    let lc = '| '.(v:foldend - v:foldstart + 1).' lines |--'
+    let lvl = '--'.repeat('▸',v:foldlevel).' '
+    let text = substitute(getline(v:foldstart),"^\\s\\+\\|[{: ]\\+$","","g").' '
+    let fold = lvl.text
+    return fold.repeat('-', winwidth(0)-strlen(fold)-strlen(lc)-&numberwidth).lc
+endfunction
+set foldtext=FoldText()
 
 " Java complete maven addition
 let g:mvn_project = ''
@@ -388,9 +398,9 @@ function! SwitchBuf()
 endfunction
 
 if has("gui_running")
-    nnoremap <silent> <c-tab> :call SwitchBuf()<CR>
+    nnoremap <silent> <c-tab> :EasyBufferToggle<CR>
 else
-    nnoremap <silent> <esc>[27;5;9~ :call SwitchBuf()<CR>
+    nnoremap <silent> <esc>[27;5;9~ :EasyBufferToggle<CR>
 endif
 nnoremap <C-q> :Bclose<CR>
 
@@ -535,6 +545,11 @@ nnoremap <C-x>x <C-w>q
 nnoremap <C-x>c :qa<CR>
 nnoremap <C-x>\| <C-w>v
 nnoremap <C-x>- <C-w>s
+
+" some convenient keymappings
+nnoremap <silent> <leader>g :Gstatus<CR>
+nnoremap <silent> <leader>t :EasyTree<CR>
+nnoremap <silent> <leader>y :YRShow<CR>
 
 " Term command for starting bash
 command! Term if GetTermBufnr() != -1 | exe ':b'.GetTermBufnr().' | :startinsert' | else | exe ':ConqueTerm bash' | endif
