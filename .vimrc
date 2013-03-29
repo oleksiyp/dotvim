@@ -74,7 +74,7 @@ set smartindent
 set softtabstop=4
 set shiftwidth=4
 set wildmenu
-set statusline=\ %f\ %#Keyword#%m%r%h%w%*\ (%l/%L,\ %c)\ %P%=\ %y\ [%{&encoding}:%{&fileformat}]\ \ 
+set statusline=\ %f\ %#Keyword#%m%r%h%w%*\ (%l/%L,\ %c)\ %P%=\ %y\ \|%{&encoding}:%{&fileformat}\|\ \ 
 set laststatus=2
 set timeoutlen=500
 set directory^=~/.backups
