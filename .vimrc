@@ -116,9 +116,11 @@ au InsertLeave * set nocursorline
 fun! FoldText()
     let lc = '| '.(v:foldend - v:foldstart + 1).' lines |--'
     let lvl = '--'.repeat('▸',v:foldlevel).' '
-    let text = substitute(getline(v:foldstart),"^\\s\\+\\|[{: ]\\+$","","g").' '
-    let fold = lvl.text
-    return fold.repeat('-', winwidth(0)-strlen(fold)-strlen(lc)-&numberwidth).lc
+    let text = substitute(getline(v:foldstart),"^[ \"\t]\\+\\|[{: \t]\\+$","","g")
+    if &filetype == 'vim'
+        let text = substitute(text,"[ \t{0-9]\\+$","","g")
+    endif
+    return lvl.text.' '.repeat('-', winwidth(0)-strlen(lvl)-strlen(text)-1-strlen(lc)-&numberwidth).lc
 endfunction
 set foldtext=FoldText()
 
