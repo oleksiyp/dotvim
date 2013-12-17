@@ -8,6 +8,10 @@ if has("gui_running")
         set guicursor+=a:blinkwait0
     endif
 
+    if has('gui_win32') || has('gui_win64')
+        set guifont=DejaVu_Sans_Mono:h10:cRUSSIAN
+    endif
+
     " Some meta mappings
     nnoremap <silent> <M-Right> :call WinMoveRight()<CR>
     nnoremap <silent> <M-l> :call WinMoveRight()<CR>
