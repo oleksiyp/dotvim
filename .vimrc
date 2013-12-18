@@ -1,6 +1,10 @@
 set nocompatible
 filetype off
 
+if has('win32') || has('win64')
+    set rtp+=~/.vim
+endif
+
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
