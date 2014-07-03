@@ -48,10 +48,12 @@ Bundle 'troydm/zoomwintab.vim'
 Bundle 'chaquotay/ftl-vim-syntax'
 Bundle 'mbbill/undotree'
 Bundle 'vim-scripts/cbackup.vim'
-" Bundle 'Shougo/vimproc'
+Bundle 'Shougo/vimproc'
 " Bundle 'Shougo/unite.vim'
 " Bundle 'Shougo/vimfiler'
 " Bundle 'Shougo/vimshell'
+Bundle 'eagletmt/ghcmod-vim'
+Bundle 'junegunn/limelight.vim'
 
 " vim-scripts repos
 Bundle 'YankRing.vim'
@@ -113,6 +115,7 @@ let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [], 'passive
 " let g:syntastic_java_checkstyle_conf_file = '/home/troydm/checkstyle-5.5/sun_checks.xml'
 let g:easybuffer_use_zoomwintab = 1
 let g:yankring_history_file = '.vim_yankring_history'
+let g:limelight_conceal_ctermfg = 240
 
 " Insert mode cursor line
 au InsertEnter * set cursorline
@@ -558,6 +561,7 @@ nnoremap <C-x>- <C-w>s
 nnoremap <silent> <leader>g :Gstatus<CR>
 nnoremap <silent> <leader>t :EasyTree<CR>
 nnoremap <silent> <leader>y :YRShow<CR>
+nnoremap <silent> <leader>h :GhcModType<CR>
 
 " Term command for starting bash
 command! Term if GetTermBufnr() != -1 | exe ':b'.GetTermBufnr().' | :startinsert' | else | exe ':ConqueTerm bash' | endif
