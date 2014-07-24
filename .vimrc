@@ -54,6 +54,7 @@ Bundle 'Shougo/vimproc'
 " Bundle 'Shougo/vimshell'
 Bundle 'eagletmt/ghcmod-vim'
 Bundle 'junegunn/limelight.vim'
+Bundle 'kovisoft/slimv'
 
 " vim-scripts repos
 Bundle 'YankRing.vim'
@@ -116,6 +117,7 @@ let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [], 'passive
 let g:easybuffer_use_zoomwintab = 1
 let g:yankring_history_file = '.vim_yankring_history'
 let g:limelight_conceal_ctermfg = 240
+let g:slimv_impl = 'sbcl'
 
 " Insert mode cursor line
 au InsertEnter * set cursorline
