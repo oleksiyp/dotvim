@@ -375,16 +375,21 @@ cmap <c-n> <CR>n/<c-p>
 let g:pb_command_prefix = 'ssh mini '
 
 " FuzzyFinder keybindings 
-function! OpenFile()
+function! OpenFile(grep)
     if getbufvar('%','&filetype') == 'easytree'
         if winnr("$") == 1
            execute &columns/9 . 'vs'
         endif
         :wincmd w 
     endif
-    :AsyncFinder 
+    if a:grep
+        :AsyncGrep 
+    else
+        :AsyncFinder 
+    endif
 endfunction
-noremap <silent> <C-f> :call OpenFile()<CR>
+noremap <silent> <C-f> :call OpenFile(0)<CR>
+noremap <silent> <C-g> :call OpenFile(1)<CR>
 
 " C-Tab buffer switching
 let g:switch_buf_time = reltime() 
