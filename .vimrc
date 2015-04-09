@@ -546,7 +546,11 @@ au FileType shellasyncterm inoremap <silent> <buffer> <Esc>h <Esc>:silent! call 
                          \ inoremap <silent> <buffer> <Esc>[1;3D <Esc>:silent! call WinMoveLeft()<CR>|
                          \ inoremap <silent> <buffer> <Esc>[1;3B <Esc>:silent! call WinMoveDown()<CR>|
                          \ inoremap <silent> <buffer> <Esc>[1;3A <Esc>:silent! call WinMoveUp()<CR>|
-                         \ inoremap <silent> <buffer> <Esc>[1;3C <Esc>:silent! call WinMoveRight()<CR>
+                         \ inoremap <silent> <buffer> <Esc>[1;3C <Esc>:silent! call WinMoveRight()<CR>|
+                         \ inoremap <silent> <buffer> <A-Left> <Esc>:silent! call WinMoveLeft()<CR>|
+                         \ inoremap <silent> <buffer> <A-Down> <Esc>:silent! call WinMoveDown()<CR>|
+                         \ inoremap <silent> <buffer> <A-Up> <Esc>:silent! call WinMoveUp()<CR>|
+                         \ inoremap <silent> <buffer> <A-Right> <Esc>:silent! call WinMoveRight()<CR>
 
 " Visual tab mapping
 vnoremap > >gv
