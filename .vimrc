@@ -54,6 +54,7 @@ Bundle 'Shougo/vimproc'
 Bundle 'eagletmt/ghcmod-vim'
 Bundle 'junegunn/limelight.vim'
 Bundle 'kovisoft/slimv'
+Bundle 'fidian/hexmode'
 
 " vim-scripts repos
 Bundle 'YankRing.vim'
