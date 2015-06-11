@@ -119,8 +119,13 @@ let g:slimv_impl = 'sbcl'
 
 " Insert mode cursor line
 set cursorline
-au InsertEnter * hi CursorLine      ctermbg=233   cterm=none
-au InsertLeave * hi CursorLine      ctermbg=236   cterm=none
+if has("gui_running")
+    au InsertEnter * hi CursorLine      guibg=#121212
+    au InsertLeave * hi CursorLine      guibg=#303030
+else
+    au InsertEnter * hi CursorLine      ctermbg=233   cterm=none
+    au InsertLeave * hi CursorLine      ctermbg=236   cterm=none
+endif
 
 " Code fold
 fun! FoldText()
