@@ -59,7 +59,6 @@ Plugin 'tpope/vim-fireplace'
 
 " vim-scripts repos
 Plugin 'YankRing.vim'
-Plugin 'paredit.vim'
 
 call vundle#end()
 filetype plugin indent on
