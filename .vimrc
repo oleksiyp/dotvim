@@ -55,9 +55,11 @@ Plugin 'eagletmt/ghcmod-vim'
 Plugin 'junegunn/limelight.vim'
 Plugin 'kovisoft/slimv'
 Plugin 'fidian/hexmode'
+Plugin 'tpope/vim-fireplace'
 
 " vim-scripts repos
 Plugin 'YankRing.vim'
+Plugin 'paredit.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -116,8 +118,9 @@ let g:limelight_conceal_ctermfg = 240
 let g:slimv_impl = 'sbcl'
 
 " Insert mode cursor line
-au InsertEnter * set cursorline
-au InsertLeave * set nocursorline
+set cursorline
+au InsertEnter * hi CursorLine      ctermbg=233   cterm=none
+au InsertLeave * hi CursorLine      ctermbg=236   cterm=none
 
 " Code fold
 fun! FoldText()
@@ -569,6 +572,11 @@ nnoremap <silent> <leader>g :Gstatus<CR>
 nnoremap <silent> <leader>t :EasyTree<CR>
 nnoremap <silent> <leader>y :YRShow<CR>
 nnoremap <silent> <leader>h :GhcModType<CR>
+
+" clojure fireplace keymappings
+nnoremap <silent> <leader>e :Eval<CR>
+nnoremap <silent> <leader>r :Require<CR>
+
 
 " Term command for starting bash
 command! Term if GetTermBufnr() != -1 | exe ':b'.GetTermBufnr().' | :startinsert' | else | exe ':ConqueTerm bash' | endif
