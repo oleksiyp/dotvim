@@ -576,6 +576,7 @@ nnoremap <silent> <leader>g :Gstatus<CR>
 nnoremap <silent> <leader>t :EasyTree<CR>
 nnoremap <silent> <leader>y :YRShow<CR>
 nnoremap <silent> <leader>h :GhcModType<CR>
+nnoremap <silent> <leader>u :UndotreeToggle<CR>
 
 " clojure fireplace keymappings
 nnoremap <silent> <leader>e :Eval<CR>
