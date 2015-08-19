@@ -56,6 +56,7 @@ Plugin 'junegunn/limelight.vim'
 Plugin 'kovisoft/slimv'
 Plugin 'fidian/hexmode'
 Plugin 'tpope/vim-fireplace'
+Plugin 'zah/nim.vim'
 
 " vim-scripts repos
 Plugin 'YankRing.vim'
