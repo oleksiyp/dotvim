@@ -219,7 +219,7 @@ if &t_Co > 255
     hi VisualNOS       ctermfg=236   ctermbg=210     cterm=bold
     hi WarningMsg      ctermfg=15    ctermbg=236     cterm=bold
     hi WildMenu        ctermbg=236   ctermfg=194     cterm=bold
-    hi CursorLine      ctermbg=232   cterm=none
+    hi CursorLine      ctermbg=236   cterm=none
 
     " spellchecking, always "bright" background
     hi SpellLocal ctermfg=14  ctermbg=237
@@ -302,7 +302,7 @@ if exists("g:zenburn_high_Contrast")
 else
     " Original, lighter background
     hi Normal          guifg=#d0d1d2 guibg=#3a3a3a
-    hi CursorLine      guibg=#434443
+    hi CursorLine      guibg=#303030
     hi Pmenu           guibg=#2c2e2e guifg=#9f9f9f
     hi PMenuSel        guibg=#242424 guifg=#d0d0a0 gui=bold
     hi PmenuSbar       guibg=#2e3330 guifg=#000000

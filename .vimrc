@@ -56,6 +56,8 @@ Plugin 'junegunn/limelight.vim'
 Plugin 'kovisoft/slimv'
 Plugin 'fidian/hexmode'
 Plugin 'rust-lang/rust.vim'
+Plugin 'tpope/vim-fireplace'
+Plugin 'zah/nim.vim'
 
 " vim-scripts repos
 Plugin 'YankRing.vim'
@@ -118,8 +120,14 @@ let g:slimv_impl = 'sbcl'
 let g:slimv_repl_split = 2
 
 " Insert mode cursor line
-au InsertEnter * set cursorline
-au InsertLeave * set nocursorline
+set cursorline
+if has("gui_running")
+    au InsertEnter * hi CursorLine      guibg=#121212
+    au InsertLeave * hi CursorLine      guibg=#303030
+else
+    au InsertEnter * hi CursorLine      ctermbg=233   cterm=none
+    au InsertLeave * hi CursorLine      ctermbg=236   cterm=none
+endif
 
 " Code fold
 fun! FoldText()
@@ -571,6 +579,12 @@ nnoremap <silent> <leader>g :Gstatus<CR>
 nnoremap <silent> <leader>t :EasyTree<CR>
 nnoremap <silent> <leader>y :YRShow<CR>
 nnoremap <silent> <leader>h :GhcModType<CR>
+nnoremap <silent> <leader>u :UndotreeToggle<CR>
+
+" clojure fireplace keymappings
+nnoremap <silent> <leader>e :Eval<CR>
+nnoremap <silent> <leader>r :Require<CR>
+
 
 " Term command for starting bash
 command! Term if GetTermBufnr() != -1 | exe ':b'.GetTermBufnr().' | :startinsert' | else | exe ':ConqueTerm bash' | endif
