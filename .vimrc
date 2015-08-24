@@ -55,6 +55,7 @@ Plugin 'eagletmt/ghcmod-vim'
 Plugin 'junegunn/limelight.vim'
 Plugin 'kovisoft/slimv'
 Plugin 'fidian/hexmode'
+Plugin 'rust-lang/rust.vim'
 
 " vim-scripts repos
 Plugin 'YankRing.vim'
@@ -114,6 +115,7 @@ let g:easybuffer_use_zoomwintab = 1
 let g:yankring_history_file = '.vim_yankring_history'
 let g:limelight_conceal_ctermfg = 240
 let g:slimv_impl = 'sbcl'
+let g:slimv_repl_split = 2
 
 " Insert mode cursor line
 au InsertEnter * set cursorline
