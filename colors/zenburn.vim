@@ -189,7 +189,7 @@ if &t_Co > 255
     hi Label           ctermfg=187   cterm=underline
     hi LineNr          ctermfg=248   ctermbg=235
     hi Macro           ctermfg=223   cterm=bold
-    hi MatchParen      ctermfg=238   ctermbg=181 cterm=bold
+    hi MatchParen      ctermfg=238   ctermbg=223 cterm=bold
     hi ModeMsg         ctermfg=223   cterm=none
     hi MoreMsg         ctermfg=15    cterm=bold
     hi Number          ctermfg=116
@@ -307,7 +307,7 @@ else
     hi PMenuSel        guibg=#242424 guifg=#d0d0a0 gui=bold
     hi PmenuSbar       guibg=#2e3330 guifg=#000000
     hi PMenuThumb      guibg=#a0afa0 guifg=#040404
-    hi MatchParen      guifg=#b2b2a0 guibg=#2e2e2e gui=bold
+    hi MatchParen      guifg=#0202a0 guibg=#f8dcb7 gui=bold
     hi SignColumn      guifg=#9fafaf guibg=#343434 gui=bold
     hi TabLineFill     guifg=#cfcfaf guibg=#353535 gui=bold
     hi TabLineSel      guifg=#efefef guibg=#3a3a39 gui=bold
