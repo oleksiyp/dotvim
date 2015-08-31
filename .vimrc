@@ -575,6 +575,7 @@ nnoremap <C-x>\| <C-w>v
 nnoremap <C-x>- <C-w>s
 
 " some convenient keymappings
+nnoremap <silent> <leader>s :ShellTerminal<CR>
 nnoremap <silent> <leader>g :Gstatus<CR>
 nnoremap <silent> <leader>t :EasyTree<CR>
 nnoremap <silent> <leader>y :YRShow<CR>
